@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		217302AB28B4138300C8F572 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217302AA28B4138300C8F572 /* DetailView.swift */; };
+		217302AD28B418CB00C8F572 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217302AC28B418CB00C8F572 /* WebView.swift */; };
 		21E730A828B3E97300C3F512 /* HackerNewsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E730A728B3E97300C3F512 /* HackerNewsApp.swift */; };
 		21E730AA28B3E97300C3F512 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E730A928B3E97300C3F512 /* ContentView.swift */; };
 		21E730AC28B3E97700C3F512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21E730AB28B3E97700C3F512 /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		217302AA28B4138300C8F572 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		217302AC28B418CB00C8F572 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		21E730A428B3E97300C3F512 /* HackerNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21E730A728B3E97300C3F512 /* HackerNewsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNewsApp.swift; sourceTree = "<group>"; };
 		21E730A928B3E97300C3F512 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				21E730A928B3E97300C3F512 /* ContentView.swift */,
+				217302AA28B4138300C8F572 /* DetailView.swift */,
+				217302AC28B418CB00C8F572 /* WebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,6 +168,8 @@
 				21E730B728B3EEB300C3F512 /* NetworkManager.swift in Sources */,
 				21E730B928B3F05C00C3F512 /* PostData.swift in Sources */,
 				21E730AA28B3E97300C3F512 /* ContentView.swift in Sources */,
+				217302AD28B418CB00C8F572 /* WebView.swift in Sources */,
+				217302AB28B4138300C8F572 /* DetailView.swift in Sources */,
 				21E730A828B3E97300C3F512 /* HackerNewsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
