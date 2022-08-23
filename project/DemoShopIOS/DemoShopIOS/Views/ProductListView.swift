@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct ProductListView: View {
     @ObservedObject var productService = ProductService()
@@ -15,7 +16,7 @@ struct ProductListView: View {
             List(productService.productDtos) { productDto in
                 NavigationLink(destination: ProductDetailView(productDto: productDto)) {
                     HStack {
-                        AsyncImage(
+                        CachedAsyncImage(
                             url: URL(string: productDto.imageURL),
                             content: {image in image.resizable()
                                                     .aspectRatio(contentMode: .fit)
@@ -30,9 +31,22 @@ struct ProductListView: View {
                 }
             }
             .navigationTitle("Home")
+            .navigationBarTitleDisplayMode(.inline)
+            .listStyle(.plain)
         }
         .onAppear {
+            print("onAppear")
             self.productService.getItems()
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+            appearance.backgroundColor = UIColor(red: 81/255, green: 43/255, blue: 212/255, alpha: 1)
+            appearance.titleTextAttributes = [.foregroundColor: UIColor(Color.white)]
+
+            UINavigationBar.appearance().tintColor = .white
+            // Inline appearance (standard height appearance)
+            UINavigationBar.appearance().standardAppearance = appearance
+            // Large Title appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
         }
     }
 }

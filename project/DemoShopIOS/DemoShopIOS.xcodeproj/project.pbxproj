@@ -14,6 +14,7 @@
 		217AA12528B4BBF500E842BF /* ProductDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AA12428B4BBF500E842BF /* ProductDto.swift */; };
 		217AA12828B4C0B400E842BF /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AA12728B4C0B400E842BF /* ProductListView.swift */; };
 		217AA12A28B4CCF200E842BF /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AA12928B4CCF200E842BF /* ProductDetailView.swift */; };
+		2183070E28B4F72600FB7CE8 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2183070D28B4F72600FB7CE8 /* CachedAsyncImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2183070E28B4F72600FB7CE8 /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +118,9 @@
 			dependencies = (
 			);
 			name = DemoShopIOS;
+			packageProductDependencies = (
+				2183070D28B4F72600FB7CE8 /* CachedAsyncImage */,
+			);
 			productName = DemoShopIOS;
 			productReference = 211C344228B281200095E336 /* DemoShopIOS.app */;
 			productType = "com.apple.product-type.application";
@@ -144,6 +149,9 @@
 				Base,
 			);
 			mainGroup = 211C343928B281200095E336;
+			packageReferences = (
+				2183070C28B4F72600FB7CE8 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+			);
 			productRefGroup = 211C344328B281200095E336 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -377,6 +385,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2183070C28B4F72600FB7CE8 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2183070D28B4F72600FB7CE8 /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2183070C28B4F72600FB7CE8 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 211C343A28B281200095E336 /* Project object */;
 }
