@@ -34,6 +34,18 @@ struct ProductListView: View {
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
             .listStyle(.plain)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading)
+                {
+                    Button(action: {
+                        print("go to cart")
+                    },
+                           label: {Image(systemName: "text.justify")
+                        .font(.body)
+                        .foregroundColor(.white)})
+                    
+                }
+            }
         }
         .onAppear {
             print("onAppear")
