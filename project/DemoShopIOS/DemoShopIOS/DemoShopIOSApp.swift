@@ -11,7 +11,11 @@ import SwiftUI
 struct DemoShopIOSApp: App {
     var body: some Scene {
         WindowGroup {
-            ProductListView()
+            RootView {
+                //Put the view you want your app to present here
+                ProductListView()
+                    //add necessary environment objects here
+            }
         }
     }
 }

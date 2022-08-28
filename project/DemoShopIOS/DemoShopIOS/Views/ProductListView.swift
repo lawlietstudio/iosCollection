@@ -25,7 +25,8 @@ struct ProductListView: View {
                         )
                         VStack(alignment: .leading) {
                             Text(productDto.name)
-                            Text(NSDecimalNumber(decimal: productDto.price).stringValue)
+//                            Text(NSDecimalNumber(decimal: productDto.price).stringValue)
+                            Text(decimal2Currency(NSDecimalNumber(decimal: productDto.price)))
                         }
                     }
                 }
@@ -48,6 +49,7 @@ struct ProductListView: View {
             // Large Title appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         }
+        .statusBarStyle(.lightContent) //set status bar style here
     }
 }
 

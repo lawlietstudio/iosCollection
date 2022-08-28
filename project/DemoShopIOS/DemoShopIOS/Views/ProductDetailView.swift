@@ -9,7 +9,12 @@ import SwiftUI
 import CachedAsyncImage
 
 struct ProductDetailView: View {
-    let productDto: ProductDto?
+    let _productDto: ProductDto?
+    
+    init(productDto: ProductDto?) {
+          UIScrollView.appearance().bounces = false
+        _productDto = productDto
+    }
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -19,7 +24,7 @@ struct ProductDetailView: View {
                     Rectangle().fill(.white).frame(height: 100)
                 }
                 CachedAsyncImage(
-                    url: URL(string: productDto?.imageURL ?? ""),
+                    url: URL(string: _productDto?.imageURL ?? ""),
                     content: {image in image.resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(maxWidth: 125, maxHeight: 125)},
@@ -28,11 +33,33 @@ struct ProductDetailView: View {
                     .background(Circle().fill(.white).frame(width: 150, height: 150))
                     .overlay(Circle().stroke(Color.gray, lineWidth: 1).frame(width: 150, height: 150))
             }
-            Text(productDto?.description ?? "some description").padding(15)
-            Text(NSDecimalNumber(decimal: productDto?.price ?? 0).stringValue).padding(15)
-//            Text(NSNumber(productDto?.qty ?? 0).stringValue)
+            ScrollView  {
+                VStack (alignment: .leading)
+                {
+                    Text(_productDto?.description ?? "some description")
+                        
+                    .padding([.leading, .trailing], 15)
+                    Text(decimal2Currency(NSDecimalNumber(decimal: _productDto?.price ?? 0)))
+                        .padding([.top, .leading, .trailing],15)
+                    Text(("(\(_productDto?.qty ?? 0) items in stock)")).padding([.leading, .trailing], 15)
+                }
+
+            }.padding([.top], -15)
             Spacer()
-//            Button
+            HStack {
+                Spacer().frame(width: 20)
+                Button("Add To Cart", action: {})
+                    .foregroundColor(Color(UIColor(red: 81/255, green: 43/255, blue: 212/255, alpha: 1)))
+                    .padding([.leading, .trailing], 15)
+                    .padding([.top, .bottom], 10)
+                    .frame(maxWidth: .infinity)
+                    .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color(UIColor(red: 81/255, green: 43/255, blue: 212/255, alpha: 1)), lineWidth: 3)
+                )
+                Spacer().frame(width: 20)
+            }.padding(.bottom, 15)
+            .navigationTitle(_productDto?.name ?? "Name")
         }
     }
 }
