@@ -17,6 +17,11 @@
 		217AA12A28B4CCF200E842BF /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AA12928B4CCF200E842BF /* ProductDetailView.swift */; };
 		217C402828B7BF0700457ABB /* FormatUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217C402728B7BF0700457ABB /* FormatUtils.swift */; };
 		2183070E28B4F72600FB7CE8 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2183070D28B4F72600FB7CE8 /* CachedAsyncImage */; };
+		21D0F48328BE8A7C00DFF60F /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D0F48228BE8A7C00DFF60F /* SideMenuView.swift */; };
+		21D0F48528BE8B3200DFF60F /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D0F48428BE8B3200DFF60F /* SideMenuHeaderView.swift */; };
+		21D0F48728BE8B5700DFF60F /* SideMenuOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D0F48628BE8B5700DFF60F /* SideMenuOptionView.swift */; };
+		21D0F48928BE8B9000DFF60F /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D0F48828BE8B9000DFF60F /* SideMenuViewModel.swift */; };
+		21D0F48B28BE9EFD00DFF60F /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D0F48A28BE9EFD00DFF60F /* ColorUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		217AA12728B4C0B400E842BF /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
 		217AA12928B4CCF200E842BF /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		217C402728B7BF0700457ABB /* FormatUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatUtils.swift; sourceTree = "<group>"; };
+		21D0F48228BE8A7C00DFF60F /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		21D0F48428BE8B3200DFF60F /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
+		21D0F48628BE8B5700DFF60F /* SideMenuOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionView.swift; sourceTree = "<group>"; };
+		21D0F48828BE8B9000DFF60F /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
+		21D0F48A28BE9EFD00DFF60F /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +73,7 @@
 		211C344428B281200095E336 /* DemoShopIOS */ = {
 			isa = PBXGroup;
 			children = (
+				21D0F48128BE8A6600DFF60F /* Components */,
 				21673DB628BBB6BA00A78535 /* Extensions */,
 				217C402628B7BEEE00457ABB /* Utils */,
 				217AA12628B4C09400E842BF /* Views */,
@@ -120,8 +131,20 @@
 			isa = PBXGroup;
 			children = (
 				217C402728B7BF0700457ABB /* FormatUtils.swift */,
+				21D0F48A28BE9EFD00DFF60F /* ColorUtils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		21D0F48128BE8A6600DFF60F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				21D0F48228BE8A7C00DFF60F /* SideMenuView.swift */,
+				21D0F48428BE8B3200DFF60F /* SideMenuHeaderView.swift */,
+				21D0F48628BE8B5700DFF60F /* SideMenuOptionView.swift */,
+				21D0F48828BE8B9000DFF60F /* SideMenuViewModel.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,9 +225,14 @@
 			files = (
 				217C402828B7BF0700457ABB /* FormatUtils.swift in Sources */,
 				21673DB528BBB64F00A78535 /* StatusBarController.swift in Sources */,
+				21D0F48328BE8A7C00DFF60F /* SideMenuView.swift in Sources */,
+				21D0F48B28BE9EFD00DFF60F /* ColorUtils.swift in Sources */,
+				21D0F48928BE8B9000DFF60F /* SideMenuViewModel.swift in Sources */,
+				21D0F48728BE8B5700DFF60F /* SideMenuOptionView.swift in Sources */,
 				211C344628B281200095E336 /* DemoShopIOSApp.swift in Sources */,
 				217AA12A28B4CCF200E842BF /* ProductDetailView.swift in Sources */,
 				217AA12328B4BBCA00E842BF /* ProductService.swift in Sources */,
+				21D0F48528BE8B3200DFF60F /* SideMenuHeaderView.swift in Sources */,
 				217AA12528B4BBF500E842BF /* ProductDto.swift in Sources */,
 				217AA12828B4C0B400E842BF /* ProductListView.swift in Sources */,
 			);
