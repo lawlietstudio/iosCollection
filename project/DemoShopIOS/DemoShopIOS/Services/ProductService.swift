@@ -13,11 +13,13 @@ class ProductService: ObservableObject
     @Published var productCategoryDtos = [ProductCategoryDto]()
     var apiDomain = "https://demoshopapi.lawlietstudio.com/"
     var isGetProductCategories = false
+    @Published var isGetItemsLoading = false
     
     public static let shared = ProductService()
     
     func getItems()
     {
+        isGetItemsLoading = true
         if let url = URL(string: apiDomain + "api/Product")
         {
             let session = URLSession(configuration: .default)
@@ -40,6 +42,7 @@ class ProductService: ObservableObject
             }
             task.resume()
         }
+        isGetItemsLoading = false
     }
     
     func getProductCategories()

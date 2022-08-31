@@ -10,7 +10,7 @@ import CachedAsyncImage
 
 struct ProductListView: View {
     @State private var isShowing = false;
-    @ObservedObject var productService = ProductService()
+    @ObservedObject var productService = ProductService.shared
     
     var body: some View {
         NavigationView {
@@ -60,12 +60,19 @@ struct ProductListView: View {
                 }
                 .onAppear{
                     print("onAppear")
+                    isShowing = false
                     self.productService.getItems()
+                    self.productService.getProductCategories()
                 }
                 .navigationTitle("Home")
                 .navigationBarTitleDisplayMode(isShowing ? .automatic : .inline)
+                if (productService.productDtos.count < 1)
+                {
+                    ProgressView()
+                }
             }
         }
+        .navigationBarHidden(true)
         .onAppear {
 
             let appearance = UINavigationBarAppearance()

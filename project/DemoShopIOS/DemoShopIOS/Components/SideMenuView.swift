@@ -10,6 +10,8 @@ import SwiftUI
 struct SideMenuView: View {
     @Binding var isShowing: Bool
     @ObservedObject var productService = ProductService.shared
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var isLinkActive = false
     
     var body: some View {
         ZStack {
@@ -34,23 +36,45 @@ struct SideMenuView: View {
 //                    )
 //
 //                }
-                NavigationLink(
-                    destination: ProductListView(),
-                    label: { SideMenuOptionView(productCategoryDto: nil)
-                    }
-                )
-                ForEach(productService.productCategoryDtos)
-                { productCategoryDto in
-                    Button(action: {}, label: {
-                        { SideMenuOptionView(productCategoryDto: productCategoryDto)
-                    })
-//                    NavigationLink(
-//                        destination: Text(productCategoryDto.name),
-//                        label:
+                
+//                NavigationLink(
+//                    destination: ProductListView(),
+//                    label: { SideMenuOptionView(productCategoryDto: nil)
+//                    }
+//                )
+                
+//                Button(action: {
+//                        withAnimation(.spring()) {
+//                            isShowing.toggle()
 //                        }
-//                    )
+//                        self.presentationMode.wrappedValue.dismiss()
+//                    }, label:
+//                    {
+//                        SideMenuOptionView(productCategoryDto: nil, imageName: "house", title: "Home")
+//                    }
+//                )
+                
+                NavigationLink(destination: ProductListView()){
+                    SideMenuOptionView(productCategoryDto: nil, imageName: "house", title: "Home")
                 }
                 
+                ForEach(productService.productCategoryDtos)
+                { productCategoryDto in
+                    Button(action: {
+                            withAnimation(.spring()) {
+                                isShowing.toggle()
+                            }
+                        }, label:
+                        {
+                        SideMenuOptionView(productCategoryDto: productCategoryDto)
+                        }
+                    )
+                }
+                
+                NavigationLink(destination: ShoppingCartView()){
+                    SideMenuOptionView(productCategoryDto: nil, imageName: "cart", title: "Shopping Cart")
+                }
+
                 Spacer()
             }
         }
@@ -65,8 +89,8 @@ struct SideMenuView: View {
     }
 }
 
-struct SideMenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        SideMenuView(isShowing: .constant(true))
-    }
-}
+//struct SideMenuView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SideMenuView(isShowing: .constant(true))
+//    }
+//}
