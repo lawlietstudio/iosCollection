@@ -39,8 +39,11 @@ struct ProductDetailView: View {
                     Text(_productDto?.description ?? "some description")
                         
                     .padding([.leading, .trailing], 15)
-                    Text(decimal2Currency(NSDecimalNumber(decimal: _productDto?.price ?? 0))).fontWeight(.semibold)
-                        .padding([.top, .leading, .trailing],15)
+                    Text(decimal2Currency(NSDecimalNumber(decimal: _productDto?.price ?? 0)))
+                        .font(.system(size: 24))
+                        .fontWeight(.semibold)
+                        .padding([.leading, .trailing],15)
+                        .padding([.top, .bottom],1 )
                     Text(("(\(_productDto?.qty ?? 0) items in stock)")).padding([.leading, .trailing], 15)
                 }
 

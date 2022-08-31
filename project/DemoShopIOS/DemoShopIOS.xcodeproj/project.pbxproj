@@ -22,6 +22,8 @@
 		21D0F48728BE8B5700DFF60F /* SideMenuOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D0F48628BE8B5700DFF60F /* SideMenuOptionView.swift */; };
 		21D0F48928BE8B9000DFF60F /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D0F48828BE8B9000DFF60F /* SideMenuViewModel.swift */; };
 		21D0F48B28BE9EFD00DFF60F /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D0F48A28BE9EFD00DFF60F /* ColorUtils.swift */; };
+		21DFACB028BF57D80049C2E6 /* ViewDidLoadModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DFACAF28BF57D80049C2E6 /* ViewDidLoadModifier.swift */; };
+		21DFACB228BF593B0049C2E6 /* ProductCategoryDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DFACB128BF593B0049C2E6 /* ProductCategoryDto.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		21D0F48628BE8B5700DFF60F /* SideMenuOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionView.swift; sourceTree = "<group>"; };
 		21D0F48828BE8B9000DFF60F /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
 		21D0F48A28BE9EFD00DFF60F /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
+		21DFACAF28BF57D80049C2E6 /* ViewDidLoadModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDidLoadModifier.swift; sourceTree = "<group>"; };
+		21DFACB128BF593B0049C2E6 /* ProductCategoryDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategoryDto.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				21673DB428BBB64F00A78535 /* StatusBarController.swift */,
+				21DFACAF28BF57D80049C2E6 /* ViewDidLoadModifier.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				217AA12428B4BBF500E842BF /* ProductDto.swift */,
+				21DFACB128BF593B0049C2E6 /* ProductCategoryDto.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -226,10 +232,12 @@
 				217C402828B7BF0700457ABB /* FormatUtils.swift in Sources */,
 				21673DB528BBB64F00A78535 /* StatusBarController.swift in Sources */,
 				21D0F48328BE8A7C00DFF60F /* SideMenuView.swift in Sources */,
+				21DFACB228BF593B0049C2E6 /* ProductCategoryDto.swift in Sources */,
 				21D0F48B28BE9EFD00DFF60F /* ColorUtils.swift in Sources */,
 				21D0F48928BE8B9000DFF60F /* SideMenuViewModel.swift in Sources */,
 				21D0F48728BE8B5700DFF60F /* SideMenuOptionView.swift in Sources */,
 				211C344628B281200095E336 /* DemoShopIOSApp.swift in Sources */,
+				21DFACB028BF57D80049C2E6 /* ViewDidLoadModifier.swift in Sources */,
 				217AA12A28B4CCF200E842BF /* ProductDetailView.swift in Sources */,
 				217AA12328B4BBCA00E842BF /* ProductService.swift in Sources */,
 				21D0F48528BE8B3200DFF60F /* SideMenuHeaderView.swift in Sources */,

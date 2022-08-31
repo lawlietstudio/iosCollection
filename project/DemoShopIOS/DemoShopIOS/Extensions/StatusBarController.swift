@@ -6,6 +6,8 @@
 
 import SwiftUI
 
+// for setting the status bar to white
+
 class HostingController<Content: View>: UIHostingController<Content> {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIApplication.statusBarStyle

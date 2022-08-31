@@ -10,10 +10,15 @@ import Foundation
 class ProductService: ObservableObject
 {
     @Published var productDtos = [ProductDto]()
+    @Published var productCategoryDtos = [ProductCategoryDto]()
+    var apiDomain = "https://demoshopapi.lawlietstudio.com/"
+    var isGetProductCategories = false
+    
+    public static let shared = ProductService()
     
     func getItems()
     {
-        if let url = URL(string: "https://demoshopapi.lawlietstudio.com/api/Product")
+        if let url = URL(string: apiDomain + "api/Product")
         {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
@@ -35,6 +40,37 @@ class ProductService: ObservableObject
             }
             task.resume()
         }
+    }
+    
+    func getProductCategories()
+    {
+        if (isGetProductCategories)
+        {
+            return
+        }
+        if let url = URL(string: apiDomain + "api/Product/GetProductCategories")
+        {
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: url) { (data, response, error) in
+                if error == nil {
+                    let decoder = JSONDecoder()
+                    if let safeData = data {
+                        do {
+                            let results = try decoder.decode([ProductCategoryDto].self, from: safeData)
+                            DispatchQueue.main.async {
+                                self.productCategoryDtos = results
+                            }
+                        }
+                        catch
+                        {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+        isGetProductCategories = true
     }
 }
 
