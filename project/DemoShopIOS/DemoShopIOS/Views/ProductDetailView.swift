@@ -51,15 +51,9 @@ struct ProductDetailView: View {
             Spacer()
             HStack {
                 Spacer().frame(width: 20)
-                Button("Add To Cart", action: {})
-                    .foregroundColor(Color(UIColor(red: 81/255, green: 43/255, blue: 212/255, alpha: 1)))
-                    .padding([.leading, .trailing], 15)
-                    .padding([.top, .bottom], 10)
-                    .frame(maxWidth: .infinity)
-                    .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color(UIColor(red: 81/255, green: 43/255, blue: 212/255, alpha: 1)), lineWidth: 3)
-                )
+//                CommonButton(text: "Add to Cart")
+                Button(action: { print ("add to cart")})
+                {Text("Add to Cart")}.buttonStyle(CommonButtonStyle())
                 Spacer().frame(width: 20)
             }.padding(.bottom, 15)
             .navigationTitle(_productDto?.name ?? "Name")

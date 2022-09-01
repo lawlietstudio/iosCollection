@@ -15,7 +15,6 @@ struct SideMenuView: View {
     
     var body: some View {
         ZStack {
-//            background(.blue)
             LinearGradient(gradient: Gradient(colors: [Color(colorPrimary())]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             VStack {
@@ -23,69 +22,33 @@ struct SideMenuView: View {
                 SideMenuHeaderView(isShowing: $isShowing).foregroundColor(.white)
                     .frame(height: 240).padding(.bottom, -80)
                 // Cell itmes
-//                ForEach(0..<6) { _ in
-//                    SideMenuOptionView()
-//                }
                 
-//                ForEach(SideMenuViewModel.allCases, id: \.self)
-//                { option in
-//                    NavigationLink(
-//                        destination: Text(option.title),
-//                        label: { SideMenuOptionView(viewModel: option)
-//                        }
-//                    )
-//
-//                }
-                
-//                NavigationLink(
-//                    destination: ProductListView(),
-//                    label: { SideMenuOptionView(productCategoryDto: nil)
-//                    }
-//                )
-                
-//                Button(action: {
-//                        withAnimation(.spring()) {
-//                            isShowing.toggle()
-//                        }
-//                        self.presentationMode.wrappedValue.dismiss()
-//                    }, label:
-//                    {
-//                        SideMenuOptionView(productCategoryDto: nil, imageName: "house", title: "Home")
-//                    }
-//                )
-                
-                NavigationLink(destination: ProductListView()){
+                NavigationLink(destination: ProductListView(categoryId: 0)){
                     SideMenuOptionView(productCategoryDto: nil, imageName: "house", title: "Home")
-                }
+                }.frame(height: 48)
                 
                 ForEach(productService.productCategoryDtos)
                 { productCategoryDto in
-                    Button(action: {
-                            withAnimation(.spring()) {
-                                isShowing.toggle()
-                            }
-                        }, label:
-                        {
+                    NavigationLink(destination: ProductListView(categoryId: productCategoryDto.id)){
                         SideMenuOptionView(productCategoryDto: productCategoryDto)
-                        }
-                    )
-                }
+                    }
+                }.frame(height: 48)
                 
                 NavigationLink(destination: ShoppingCartView()){
                     SideMenuOptionView(productCategoryDto: nil, imageName: "cart", title: "Shopping Cart")
-                }
+                }.frame(height: 48)
 
                 Spacer()
             }
         }
         .navigationBarHidden(true)
-        .onAppear(){
-            print("menu bar appear")
-        }
-        .onLoad {
-            print("menu bar onLoad")
-            self.productService.getProductCategories()
-        }
+//        .onAppear(){
+//            print("menu bar appear")
+//        }
+//        .onLoad {
+//            print("menu bar onLoad")
+//            self.productService.getProductCategories()
+//        }
     }
 }
 

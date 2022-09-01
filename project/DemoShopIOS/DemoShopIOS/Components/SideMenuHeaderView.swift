@@ -13,8 +13,10 @@ struct SideMenuHeaderView: View {
         ZStack(alignment: .topTrailing) {
             Button(action: {
                 withAnimation(.spring()) {
-                    isShowing.toggle()
+//                    isShowing.toggle()
+                    isShowing = false
                 }
+//                isShowing.toggle()
             }, label: {Image(systemName: "xmark")
                 .frame(width: 32, height: 32)
                 .foregroundColor(.white)

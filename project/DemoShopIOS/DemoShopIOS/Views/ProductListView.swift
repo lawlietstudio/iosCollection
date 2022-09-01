@@ -11,6 +11,7 @@ import CachedAsyncImage
 struct ProductListView: View {
     @State private var isShowing = false;
     @ObservedObject var productService = ProductService.shared
+    var categoryId : Int
     
     var body: some View {
         NavigationView {
@@ -37,15 +38,16 @@ struct ProductListView: View {
                         }
                     }.disabled(isShowing)
                 }
-                .listStyle(PlainListStyle())
-                .cornerRadius(isShowing ? 20 : 20)
+//                .if(isShowing) { $0.listStyle(InsetListStyle()) }
+//                .if(!isShowing) { $0.listStyle(PlainListStyle()) }
+                .listStyle(InsetListStyle())
+                .cornerRadius(isShowing ? 20 : 0)
                 .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
                 .scaleEffect(isShowing ? 0.8 : 1)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading)
                     {
                         Button(action: {
-                            print("go to cart")
                             withAnimation(.spring()) {
                                 isShowing.toggle()
                             }
@@ -58,13 +60,23 @@ struct ProductListView: View {
                         
                     }
                 }
+                .onLoad {
+                    print("list view onLoad")
+                    if (categoryId == 0) // get all
+                    {
+                        self.productService.getItems()
+                    }
+                    else
+                    {
+                        self.productService.getItemByCategory(categoryId: categoryId)
+                    }
+                    self.productService.getProductCategories()
+                }
                 .onAppear{
                     print("onAppear")
                     isShowing = false
-                    self.productService.getItems()
-                    self.productService.getProductCategories()
                 }
-                .navigationTitle("Home")
+                .navigationTitle(getCategoryNameById(id: categoryId, productCategoryDtos: self.productService.productCategoryDtos))
                 .navigationBarTitleDisplayMode(isShowing ? .automatic : .inline)
                 if (productService.productDtos.count < 1)
                 {
@@ -74,7 +86,6 @@ struct ProductListView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
-
             let appearance = UINavigationBarAppearance()
             appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
             appearance.backgroundColor = colorPrimary()
@@ -90,8 +101,20 @@ struct ProductListView: View {
     }
 }
 
-struct ProductListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductListView()
+func getCategoryNameById(id : Int, productCategoryDtos : [ProductCategoryDto]) -> String
+{
+    for productCategoryDto in productCategoryDtos
+    {
+        if (productCategoryDto.id == id)
+        {
+            return productCategoryDto.name
+        }
     }
+    return "Home"
 }
+
+//struct ProductListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProductListView()
+//    }
+//}

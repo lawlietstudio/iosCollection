@@ -12,3 +12,8 @@ func colorPrimary() -> UIColor
 {
     return UIColor(red: 81/255, green: 43/255, blue: 212/255, alpha: 1)
 }
+
+func colorDanger() -> UIColor
+{
+    return UIColor(red: 220/255, green: 53/255, blue: 53/255, alpha: 1)
+}

@@ -11,16 +11,13 @@ class ProductService: ObservableObject
 {
     @Published var productDtos = [ProductDto]()
     @Published var productCategoryDtos = [ProductCategoryDto]()
-    var apiDomain = "https://demoshopapi.lawlietstudio.com/"
-    var isGetProductCategories = false
-    @Published var isGetItemsLoading = false
     
     public static let shared = ProductService()
     
     func getItems()
     {
-        isGetItemsLoading = true
-        if let url = URL(string: apiDomain + "api/Product")
+        self.productDtos.removeAll()
+        if let url = URL(string: Constants.apiDomain + "api/Product")
         {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
@@ -42,16 +39,42 @@ class ProductService: ObservableObject
             }
             task.resume()
         }
-        isGetItemsLoading = false
+    }
+    
+    func getItemByCategory(categoryId: Int)
+    {
+        self.productDtos.removeAll()
+        if let url = URL(string: Constants.apiDomain + "api/Product/\(categoryId)/GetItemsByCategory")
+        {
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: url) { (data, response, error) in
+                if error == nil {
+                    let decoder = JSONDecoder()
+                    if let safeDate = data {
+                        do {
+                            let results = try decoder.decode([ProductDto].self, from: safeDate)
+                            DispatchQueue.main.async {
+                                self.productDtos = results
+                            }
+                        }
+                        catch
+                        {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
     }
     
     func getProductCategories()
     {
-        if (isGetProductCategories)
+        if (self.productCategoryDtos.count > 0)
         {
             return
         }
-        if let url = URL(string: apiDomain + "api/Product/GetProductCategories")
+        if let url = URL(string: Constants.apiDomain + "api/Product/GetProductCategories")
         {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
@@ -73,7 +96,6 @@ class ProductService: ObservableObject
             }
             task.resume()
         }
-        isGetProductCategories = true
     }
 }
 

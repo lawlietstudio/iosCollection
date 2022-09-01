@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct ShoppingCartView: View {
     @State private var isShowing = false;
+    @ObservedObject var shoppingCartService = ShoppingCartService.shared
     
     var body: some View {
         NavigationView {
@@ -17,12 +19,54 @@ struct ShoppingCartView: View {
                 {
                     SideMenuView(isShowing:$isShowing)
                 }
-                Button(action: {isShowing.toggle(); print(isShowing)}) {
-                    Text("Shopping Cart")
-                        .cornerRadius(isShowing ? 20 : 20)
-                        .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
-                    .scaleEffect(isShowing ? 0.8 : 1)
-                }
+                List(shoppingCartService.cartItemDtos) { cartItemDto in
+                    VStack {
+                        HStack {
+                            Spacer().frame(width: 20)
+                            CachedAsyncImage(
+                                url: URL(string: cartItemDto.productImageURL),
+                                content: {image in image.resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: 100, maxHeight: 100)},
+                                placeholder: { ProgressView() }
+                            )
+                            Spacer()
+                            VStack(alignment: .leading) {
+                                Text(cartItemDto.productName)
+                                Text("Price: " + decimal2Currency(NSDecimalNumber(decimal: cartItemDto.price)))
+                                Text("Qty: \(cartItemDto.qty)")
+                            }
+                            Spacer()
+                        }
+                        HStack {
+                            Spacer().frame(width: 20)
+                            Button(action: { shoppingCartService.deleteItem(id: cartItemDto.id ) })
+                            {Text("Add to Cart")}
+                                .buttonStyle(CommonButtonStyle(color: Color(colorDanger())))
+                            Spacer().frame(width: 20)
+                        }.padding(.bottom, 15)
+                    }
+                    .listRowBackground(Color.clear)
+                }.disabled(isShowing)
+                
+                
+                    
+//                .if(isShowing) { $0.listStyle(InsetListStyle()) }
+//                .if(!isShowing) { $0.listStyle(PlainListStyle()) }
+                .listStyle(InsetListStyle())
+                .cornerRadius(isShowing ? 20 : 20)
+                .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
+                .scaleEffect(isShowing ? 0.8 : 1)
+                
+//                Button(action: {isShowing.toggle(); print(isShowing)}) {
+//                    Text("Shopping Cart")
+////                        .cornerRadius(isShowing ? 20 : 20)
+//                        .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
+//                    .scaleEffect(isShowing ? 0.8 : 1)
+//                }
+            }
+            .onAppear{
+                shoppingCartService.getItems(userId: Constants.userId)
             }
             .navigationTitle("Shopping Cart")
             .navigationBarTitleDisplayMode(.inline)

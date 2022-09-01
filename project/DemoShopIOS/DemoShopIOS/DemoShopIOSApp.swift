@@ -13,7 +13,7 @@ struct DemoShopIOSApp: App {
         WindowGroup {
             RootView {
                 //Put the view you want your app to present here
-                ProductListView()
+                ProductListView(categoryId: 0)
                     //add necessary environment objects here
             }
         }
