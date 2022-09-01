@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ShoppingCartService: ObservableObject
 {
@@ -61,7 +62,9 @@ class ShoppingCartService: ObservableObject
                                 if (cartItemDto.id == id)
                                 {
                                     DispatchQueue.main.async {
-                                        self.cartItemDtos.remove(at: i)
+//                                        withAnimation(.spring()) {
+                                            self.cartItemDtos.remove(at: i)
+//                                        }
                                     }
                                 }
                             }
