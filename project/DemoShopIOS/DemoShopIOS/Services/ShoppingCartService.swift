@@ -41,6 +41,45 @@ class ShoppingCartService: ObservableObject
         }
     }
     
+//    func addItem(cartItemToAddDto: CartItemToAddDto)
+//    {
+//        if let url = URL(string: Constants.apiDomain + "api/ShoppingCart")
+//        {
+//            let session = URLSession(configuration: .default)
+//            var request = URLRequest(url: url)
+//            request.httpMethod = "POST"
+//            let task = session.dataTask(with: request) { (data, response, error) in
+//                if error == nil {
+//                    let decoder = JSONDecoder()
+//                    if let safeDate = data {
+//                        do {
+////                            let results = try decoder.decode([CartItemDto].self, from: safeDate)
+////                            DispatchQueue.main.async {
+////                                self.cartItemDtos = results
+////                            }
+//                            for (i, cartItemDto) in self.cartItemDtos.enumerated()
+//                            {
+//                                if (cartItemDto.id == id)
+//                                {
+//                                    DispatchQueue.main.async {
+////                                        withAnimation(.spring()) {
+//                                            self.cartItemDtos.remove(at: i)
+////                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        catch
+//                        {
+//                            print(error)
+//                        }
+//                    }
+//                }
+//            }
+//            task.resume()
+//        }
+//    }
+    
     func deleteItem(id: Int)
     {
         if let url = URL(string: Constants.apiDomain + "api/ShoppingCart/\(id)")

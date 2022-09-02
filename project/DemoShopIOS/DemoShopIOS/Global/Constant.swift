@@ -10,4 +10,5 @@ import Foundation
 struct Constants {
      static let apiDomain: String = "https://demoshopapi.lawlietstudio.com/"
      static let userId: Int = 1
+     static let cartId: Int = 1
  }
