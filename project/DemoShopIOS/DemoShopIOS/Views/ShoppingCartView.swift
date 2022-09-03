@@ -48,18 +48,16 @@ struct ShoppingCartView: View {
                     }
                     
                     .listRowBackground(Color.clear)
-                }.disabled(isShowing)
-                 .animation(Animation.easeOut(duration: 1))
-                
-                
-                
-                
+                }
+                .disabled(isShowing)
+                //                 .animation(Animation.easeOut(duration: 1))
+ 
                 //                .if(isShowing) { $0.listStyle(InsetListStyle()) }
                 //                .if(!isShowing) { $0.listStyle(PlainListStyle()) }
-                    .listStyle(InsetListStyle())
-                    .cornerRadius(isShowing ? 20 : 20)
-                    .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
-                    .scaleEffect(isShowing ? 0.8 : 1)
+                .listStyle(InsetListStyle())
+                .cornerRadius(isShowing ? 20 : 20)
+                .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
+                .scaleEffect(isShowing ? 0.8 : 1)
                 
                 //                Button(action: {isShowing.toggle(); print(isShowing)}) {
                 //                    Text("Shopping Cart")
@@ -68,10 +66,10 @@ struct ShoppingCartView: View {
                 //                    .scaleEffect(isShowing ? 0.8 : 1)
                 //                }
                 
-                if (shoppingCartService.cartItemDtos.count < 1)
-                {
-                    ProgressView()
-                }
+                //                if (shoppingCartService.cartItemDtos.count < 1)
+                //                {
+                //                    ProgressView()
+                //                }
             }
             .onAppear{
                 shoppingCartService.getItems(userId: Constants.userId)
