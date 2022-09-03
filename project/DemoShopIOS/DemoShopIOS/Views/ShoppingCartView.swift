@@ -4,7 +4,6 @@
 //
 //  Created by Mark Ho on 1/9/2022.
 //
-
 import SwiftUI
 import CachedAsyncImage
 
@@ -46,28 +45,21 @@ struct ShoppingCartView: View {
                             Spacer().frame(width: 20)
                         }.padding(.bottom, 15)
                     }
+                    
                     .listRowBackground(Color.clear)
-<<<<<<< HEAD
-                }
-                .disabled(isShowing)
-                //                 .animation(Animation.easeOut(duration: 1))
- 
+                }.disabled(isShowing)
+                 .animation(Animation.easeOut(duration: 1))
+                
+                
+                
+                
                 //                .if(isShowing) { $0.listStyle(InsetListStyle()) }
                 //                .if(!isShowing) { $0.listStyle(PlainListStyle()) }
-=======
-                }.disabled(isShowing)
+                    .listStyle(InsetListStyle())
+                    .cornerRadius(isShowing ? 20 : 20)
+                    .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
+                    .scaleEffect(isShowing ? 0.8 : 1)
                 
-                
-                    
-//                .if(isShowing) { $0.listStyle(InsetListStyle()) }
-//                .if(!isShowing) { $0.listStyle(PlainListStyle()) }
->>>>>>> parent of 1b1c3b6 (Add anime)
-                .listStyle(InsetListStyle())
-                .cornerRadius(isShowing ? 20 : 20)
-                .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
-                .scaleEffect(isShowing ? 0.8 : 1)
-                
-<<<<<<< HEAD
                 //                Button(action: {isShowing.toggle(); print(isShowing)}) {
                 //                    Text("Shopping Cart")
                 ////                        .cornerRadius(isShowing ? 20 : 20)
@@ -75,18 +67,10 @@ struct ShoppingCartView: View {
                 //                    .scaleEffect(isShowing ? 0.8 : 1)
                 //                }
                 
-                //                if (shoppingCartService.cartItemDtos.count < 1)
-                //                {
-                //                    ProgressView()
-                //                }
-=======
-//                Button(action: {isShowing.toggle(); print(isShowing)}) {
-//                    Text("Shopping Cart")
-////                        .cornerRadius(isShowing ? 20 : 20)
-//                        .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
-//                    .scaleEffect(isShowing ? 0.8 : 1)
-//                }
->>>>>>> parent of 1b1c3b6 (Add anime)
+                if (shoppingCartService.cartItemDtos.count < 1)
+                {
+                    ProgressView()
+                }
             }
             .onAppear{
                 shoppingCartService.getItems(userId: Constants.userId)
