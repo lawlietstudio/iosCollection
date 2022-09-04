@@ -7,9 +7,26 @@
 import SwiftUI
 import CachedAsyncImage
 
-struct ShoppingCartView: View {
+struct ShoppingCartView: View, ShoppingCartServiceDelegate {
     @State private var isShowing = false;
+    @State private var isLoading = false;
+    @State private var totalQty = 0
+    @State private var totalPrice:Decimal = 0.0
     @ObservedObject var shoppingCartService = ShoppingCartService.shared
+    
+    
+    func performShoppingCartServiceCallBack() {
+        DispatchQueue.main.async {
+            isLoading = false
+            totalQty = 0
+            totalPrice = 0
+            for index in shoppingCartService.cartItemDtos.indices
+            {
+                totalQty += shoppingCartService.cartItemDtos[index].qty
+                totalPrice += shoppingCartService.cartItemDtos[index].price * Decimal(shoppingCartService.cartItemDtos[index].qty)
+            }
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -19,142 +36,162 @@ struct ShoppingCartView: View {
                 {
                     SideMenuView(isShowing:$isShowing)
                 }
-                VStack {
-                    List($shoppingCartService.cartItemDtos) { $cartItemDto in
-                        ZStack {
-                            Color.white.opacity(0.3)
-                                .frame(maxWidth: .infinity, maxHeight:. infinity)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                                .shadow(color: Color(colorDark()).opacity(0.3), radius: 4, x: 0, y: 0)
-                            
-                            VStack(spacing: 10) {
-                                HStack {
-                                    Spacer().frame(width: 20)
-                                    CachedAsyncImage(
-                                        url: URL(string: cartItemDto.productImageURL),
-                                        content: {image in image.resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                            .frame(maxWidth: 100, maxHeight: 100)},
-                                        placeholder: { ProgressView() }
-                                    )
-                                    //                                Spacer()
-                                    VStack(alignment: .leading) {
-                                        Text(cartItemDto.productName)
-                                        Text("Price: " + decimal2Currency(NSDecimalNumber(decimal: cartItemDto.price)))
-                                        Text("Qty: \(cartItemDto.qty)")
-                                    }
-                                    Spacer()
-                                }
-                                HStack {
-                                    Spacer().frame(width: 20)
-                                    Button(action: { cartItemDto.qty -= 1 })
-                                    {Text("- 1")}
-                                        .buttonStyle(CommonButtonStyle())
-                                    Spacer().frame(width: 20)
-                                    Button(action: { cartItemDto.qty += 1 })
-                                    {Text("+ 1")}
-                                        .buttonStyle(CommonButtonStyle())
-                                    Spacer().frame(width: 20)
-                                    Button(action: {  })
-                                    {Text("Update")}
-                                        .buttonStyle(CommonButtonStyle())
-                                    Spacer().frame(width: 20)
-                                }
-                                HStack {
-                                    Spacer().frame(width: 20)
-                                    Button(action: { shoppingCartService.deleteItem(id: cartItemDto.id ) })
-                                    {Text("Remove")}
-                                        .buttonStyle(CommonButtonStyle(color: Color(colorDanger())))
-                                    Spacer().frame(width: 20)
-                                }
-                                //                            .padding(.bottom, 15)
-                            }
-                            .padding(8)
-                            .padding([.top, .bottom], 16)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color(UIColor(red: 0, green: 0, blue: 0, alpha: 0.1 )), lineWidth: 1)
-                            )
-                        }
-                        .listRowSeparator(.hidden)
-                        .listRowBackground(Color.clear)
-                    }
-                    .padding([.top, .bottom], -24)
-                    .padding(.leading, -8)
-                    .disabled(isShowing)
-                    
-                    //                 .animation(Animation.easeOut(duration: 1))
-                    
-                    
-                    
-                    
-                    //                .if(isShowing) { $0.listStyle(InsetListStyle()) }
-                    //                .if(!isShowing) { $0.listStyle(PlainListStyle()) }
-                    .listStyle(SidebarListStyle())
-                    .cornerRadius(isShowing ? 20 : 0)
-                    .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
-                    .scaleEffect(isShowing ? 0.8 : 1)
-                    if (!isShowing)
-                    {
-                        ZStack {
-                            Rectangle()
-                                .fill(.clear)
-                                .frame(maxWidth: .infinity, maxHeight: 50)
+                ZStack {
+                    VStack {
+                        List($shoppingCartService.cartItemDtos) { $cartItemDto in
                             ZStack {
-                                
-                                HStack
-                                {
-                                    VStack(alignment: .leading)
-                                    {
-                                        Text("Total Qty: {0}")
-                                        Text("Total Price: {0:C}")
-                                    }
+                                Color.white.opacity(0.3)
+                                    .frame(maxWidth: .infinity, maxHeight:. infinity)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
                                     .shadow(color: Color(colorDark()).opacity(0.3), radius: 4, x: 0, y: 0)
-                                    Spacer().frame(width: 60)
-                                    Button(action: {   })
-                                    {
-                                        Text("Checkout")
-                                        
+                                
+                                VStack(spacing: 10) {
+                                    HStack {
+                                        Spacer().frame(width: 20)
+                                        CachedAsyncImage(
+                                            url: URL(string: cartItemDto.productImageURL),
+                                            content: {image in image.resizable()
+                                                    .aspectRatio(contentMode: .fit)
+                                                .frame(maxWidth: 100, maxHeight: 100)},
+                                            placeholder: { ProgressView() }
+                                        )
+                                        //                                Spacer()
+                                        VStack(alignment: .leading) {
+                                            Text(cartItemDto.productName)
+                                            Text("Price: " + decimal2Currency(NSDecimalNumber(decimal: cartItemDto.price)))
+                                            Text("Qty: \(cartItemDto.newQty)")
+                                                .foregroundColor((cartItemDto.newQty != cartItemDto.qty) ? Color(colorDanger()) : Color(colorDark()))
+                                        }
+                                        .foregroundColor(Color(colorDark()))
+                                        .shadow(color: Color(colorDark()).opacity(0.3), radius: 4, x: 0, y: 0)
+                                        Spacer()
                                     }
-                                    .buttonStyle(CommonButtonStyle())
-                                    Spacer()
+                                    HStack {
+                                        Spacer().frame(width: 20)
+                                        Button(action: {
+                                            if (cartItemDto.newQty > 1)
+                                            {
+                                                cartItemDto.newQty -= 1
+                                            }
+                                        })
+                                        {Text("- 1")}
+                                            .buttonStyle(CommonButtonStyle())
+                                        Spacer().frame(width: 10)
+                                        Button(action: { cartItemDto.newQty += 1 })
+                                        {Text("+ 1")}
+                                            .buttonStyle(CommonButtonStyle())
+                                        Spacer().frame(width: 10)
+                                        Button(action: {
+                                            isLoading = true
+                                            shoppingCartService.shoppingCartServiceDelegate = self
+                                            let cartItemQtyUpdateDto: CartItemQtyUpdateDto = CartItemQtyUpdateDto(cartItemId: cartItemDto.id, qty: cartItemDto.newQty)
+                                            shoppingCartService.UpdateQty(cartItemQtyUpdateDto: cartItemQtyUpdateDto)
+                                        })
+                                        {
+                                            Text("Update")
+                                            
+                                        }
+                                            .buttonStyle(CommonButtonStyle())
+                                            .opacity((cartItemDto.newQty != cartItemDto.qty) ? 1 : 0)
+                                        Spacer().frame(width: 20)
+                                    }
+                                    HStack {
+                                        Spacer().frame(width: 20)
+                                        Button(action: {
+                                            isLoading = true
+                                            shoppingCartService.shoppingCartServiceDelegate = self
+                                            shoppingCartService.deleteItem(id: cartItemDto.id )
+                                        })
+                                        {Text("Remove")}
+                                            .buttonStyle(CommonButtonStyle(color: Color(colorDanger())))
+                                        Spacer().frame(width: 20)
+                                    }
+                                    //                            .padding(.bottom, 15)
                                 }
+                                .padding(8)
+                                .padding([.top, .bottom], 16)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color(UIColor(red: 0, green: 0, blue: 0, alpha: 0.1 )), lineWidth: 1)
+                                )
                             }
-                            //                        .background(.blue)
-                            .padding(16)
-                            .padding([.leading, .trailing], 24)
-                            .border(width: 3, edges: [.top], color: Color(colorPrimary()))
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.clear)
+                        }
+                        .padding([.top, .bottom], -24)
+                        .padding(.leading, -8)
+                        .disabled(isShowing)
+                        .animation(Animation.spring())
+                        .listStyle(SidebarListStyle())
+                        if (!isShowing && shoppingCartService.cartItemDtos.count > 0)
+                        {
+                            ZStack {
+                                Rectangle()
+                                    .fill(Color(UIColor.secondarySystemBackground))
+                                    .frame(maxWidth: .infinity, maxHeight: 70)
+                                ZStack {
+                                    
+                                    HStack
+                                    {
+                                        VStack(alignment: .leading)
+                                        {
+                                            Text("Total Qty: \(totalQty)")
+                                            Text("Total Price: " + decimal2Currency(NSDecimalNumber(decimal: totalPrice)))
+                                        }
+                                        .font(.system(size: 14))
+                                        .foregroundColor(Color(colorDark()))
+                                        .shadow(color: Color(colorDark()).opacity(0.3), radius: 4, x: 0, y: 0)
+                                        Spacer()
+                                        Button(action: {   })
+                                        {
+                                            Text("Checkout")
+                                        }
+                                        .frame(width: 120)
+                                        .buttonStyle(CommonButtonStyle())
+//                                        Spacer()
+                                    }
+                                }
+                                //                        .background(.blue)
+                                .padding(16)
+                                .padding([.leading, .trailing], 12)
+                                .border(width: 3, edges: [.top], color: Color(colorPrimary()))
+                            }
                         }
                     }
+                    if (isLoading)
+                    {
+                        LoadingView()
+//                        ProgressView()
+                    }
+                    else if (shoppingCartService.cartItemDtos.count == 0)
+                    {
+                        VStack(alignment:.center) {
+                            Text("There are currently no items in your shopping cart")
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(Color(colorDark()))
+                                .shadow(color: Color(colorDark()).opacity(0.3), radius: 4, x: 0, y: 0)
+                        }
+                    }
+                    if (isShowing)
+                    {
+                        Rectangle()
+                            .fill(Color(UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .onTapGesture(perform: {
+                                withAnimation(.spring()) {
+                                    isShowing = false
+                                }
+                            })
+                    }
+
                 }
-                
-                //                Button(action: {isShowing.toggle(); print(isShowing)}) {
-                //                    Text("Shopping Cart")
-                ////                        .cornerRadius(isShowing ? 20 : 20)
-                //                        .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
-                //                    .scaleEffect(isShowing ? 0.8 : 1)
-                //                }
-                
-                if (shoppingCartService.cartItemDtos.count < 1)
-                {
-                    ProgressView()
-                }
-                if (isShowing)
-                {
-                    Rectangle()
-                        .fill(Color(UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)))
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .cornerRadius(isShowing ? 20 : 0)
-                        .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
-                        .scaleEffect(isShowing ? 0.8 : 1)
-                        .onTapGesture(perform: {
-                            withAnimation(.spring()) {
-                                isShowing = false
-                            }
-                        })
-                }
+                .cornerRadius(isShowing ? 20 : 0)
+                .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
+                .scaleEffect(isShowing ? 0.8 : 1)
             }
             .onAppear{
+                isLoading = true
+                shoppingCartService.shoppingCartServiceDelegate = self
                 shoppingCartService.getItems(userId: Constants.userId)
             }
             .navigationTitle("Shopping Cart")
@@ -168,11 +205,9 @@ struct ShoppingCartView: View {
                         print("go to cart")
                         withAnimation(.spring()) {
                             isShowing.toggle()
-                            
                         }
                         print($isShowing)
                     },
-                           //                           "list.bullet"
                            label: {Image(systemName: "text.justify")
                             .font(.system(size: 14))
                         .foregroundColor(.white)})

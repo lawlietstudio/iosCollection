@@ -15,12 +15,14 @@ struct CommonButtonStyle: ButtonStyle {
             .foregroundColor(color)
             .padding([.leading, .trailing], 15)
             .padding([.top, .bottom], 8)
-            .font(.system(size: 16, weight: .light))
+            .font(.system(size: 16, weight: .regular))
+            .contentShape(Rectangle())
             .frame(maxWidth: .infinity)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(color, lineWidth: 2)
             )
+            .contentShape(Rectangle()) // expand the clickable area the whole overlay
             .buttonStyle(PlainButtonStyle()) // enable button in list
     }
 }

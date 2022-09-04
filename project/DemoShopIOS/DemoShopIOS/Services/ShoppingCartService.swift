@@ -6,12 +6,54 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ShoppingCartService: ObservableObject
 {
     @Published var cartItemDtos = [CartItemDto]()
     
+    var shoppingCartServiceDelegate: ShoppingCartServiceDelegate?
+    
+    
     public static let shared = ShoppingCartService()
+    
+    func addItem(cartItemToAddDto: CartItemToAddDto)
+    {
+        if let url = URL(string: Constants.apiDomain + "api/ShoppingCart")
+        {
+            let session = URLSession(configuration: .default)
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//            let jsonData = try? JSONSerialization.data(withJSONObject: cartItemToAddDto)
+            let jsonEncoder = JSONEncoder()
+            do {
+                let jsonData = try jsonEncoder.encode(cartItemToAddDto)
+                request.httpBody = jsonData
+                let jsonString = String(data: jsonData, encoding: .utf8)
+                print(jsonString as Any)
+            }
+            catch
+            {
+                print(error)
+            }
+            
+            let task = session.dataTask(with: request) { (data, response, error) in
+                if error == nil {
+                    do {
+                        print("success")
+                        print(response as Any)
+                        if (self.shoppingCartServiceDelegate != nil)
+                        {
+                            self.shoppingCartServiceDelegate?.performShoppingCartServiceCallBack()
+                            self.shoppingCartServiceDelegate = nil
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
     
     func getItems(userId: Int)
     {
@@ -24,14 +66,74 @@ class ShoppingCartService: ObservableObject
                     let decoder = JSONDecoder()
                     if let safeDate = data {
                         do {
-                            let results = try decoder.decode([CartItemDto].self, from: safeDate)
+                            var results = try decoder.decode([CartItemDto].self, from: safeDate)
                             DispatchQueue.main.async {
+                                for index in results.indices {
+                                    results[index].newQty = results[index].qty
+                                    self.cartItemDtos.append(results[index])
+                                }
+                                
                                 self.cartItemDtos = results
+
+                                if (self.shoppingCartServiceDelegate != nil)
+                                {
+                                    self.shoppingCartServiceDelegate?.performShoppingCartServiceCallBack()
+                                    self.shoppingCartServiceDelegate = nil
+                                }
                             }
                         }
                         catch
                         {
                             print(error)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    func UpdateQty(cartItemQtyUpdateDto: CartItemQtyUpdateDto)
+    {
+        if let url = URL(string: Constants.apiDomain + "api/ShoppingCart/\(cartItemQtyUpdateDto.cartItemId)")
+        {
+            let session = URLSession(configuration: .default)
+            var request = URLRequest(url: url)
+            request.httpMethod = "PATCH"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//            let jsonData = try? JSONSerialization.data(withJSONObject: cartItemToAddDto)
+            let jsonEncoder = JSONEncoder()
+            do {
+                let jsonData = try jsonEncoder.encode(cartItemQtyUpdateDto)
+                request.httpBody = jsonData
+                let jsonString = String(data: jsonData, encoding: .utf8)
+                print(jsonString as Any)
+            }
+            catch
+            {
+                print(error)
+            }
+            
+            let task = session.dataTask(with: request) { (data, response, error) in
+                if error == nil {
+                    do {
+                        print("success")
+                        print(response as Any)
+                        for (i, cartItemDto) in self.cartItemDtos.enumerated()
+                        {
+                            if (cartItemDto.id == cartItemQtyUpdateDto.cartItemId)
+                            {
+                                DispatchQueue.main.async {
+                                    self.cartItemDtos[i].qty = cartItemQtyUpdateDto.qty
+                                    self.cartItemDtos[i].newQty = cartItemQtyUpdateDto.qty
+                                    
+                                    if (self.shoppingCartServiceDelegate != nil)
+                                    {
+                                        self.shoppingCartServiceDelegate?.performShoppingCartServiceCallBack()
+                                        self.shoppingCartServiceDelegate = nil
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -49,26 +151,21 @@ class ShoppingCartService: ObservableObject
             request.httpMethod = "DELETE"
             let task = session.dataTask(with: request) { (data, response, error) in
                 if error == nil {
-                    let decoder = JSONDecoder()
-                    if let safeDate = data {
-                        do {
-//                            let results = try decoder.decode([CartItemDto].self, from: safeDate)
-//                            DispatchQueue.main.async {
-//                                self.cartItemDtos = results
-//                            }
-                            for (i, cartItemDto) in self.cartItemDtos.enumerated()
+                    do {
+                        for (i, cartItemDto) in self.cartItemDtos.enumerated()
+                        {
+                            if (cartItemDto.id == id)
                             {
-                                if (cartItemDto.id == id)
-                                {
-                                    DispatchQueue.main.async {
-                                        self.cartItemDtos.remove(at: i)
+                                DispatchQueue.main.async {
+                                    self.cartItemDtos.remove(at: i)
+                                    
+                                    if (self.shoppingCartServiceDelegate != nil)
+                                    {
+                                        self.shoppingCartServiceDelegate?.performShoppingCartServiceCallBack()
+                                        self.shoppingCartServiceDelegate = nil
                                     }
                                 }
                             }
-                        }
-                        catch
-                        {
-                            print(error)
                         }
                     }
                 }
@@ -76,4 +173,9 @@ class ShoppingCartService: ObservableObject
             task.resume()
         }
     }
+}
+
+protocol ShoppingCartServiceDelegate
+{
+    func performShoppingCartServiceCallBack()
 }

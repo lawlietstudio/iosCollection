@@ -21,4 +21,5 @@ struct CartItemDto: Decodable, Identifiable
     var totalPrice: Decimal
     
     var qty: Int
+    var newQty: Int
 }

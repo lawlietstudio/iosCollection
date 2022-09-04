@@ -8,14 +8,23 @@
 import SwiftUI
 import CachedAsyncImage
 
-struct ProductDetailView: View {
+struct ProductDetailView: View, ShoppingCartServiceDelegate {
     let _productDto: ProductDto?
     @State var isLinkActive = false
+    @State private var isLoading = false;
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject var shoppingCartService = ShoppingCartService.shared
     
     init(productDto: ProductDto?) {
           UIScrollView.appearance().bounces = false
         _productDto = productDto
+    }
+    
+    func performShoppingCartServiceCallBack() {
+        DispatchQueue.main.async {
+            isLoading = false
+            NavigationUtil.goToView()
+        }
     }
     
     var body: some View {
@@ -68,12 +77,15 @@ struct ProductDetailView: View {
     //                CommonButton(text: "Add to Cart")
                     Button(action: {
                         print ("add to cart")
-                        NavigationUtil.goToView()
-//                        self.isLinkActive = true
+                        isLoading = true
+                        shoppingCartService.shoppingCartServiceDelegate = self
+                        let cartItemToAddDto: CartItemToAddDto = CartItemToAddDto(cartId: Constants.cartId, productId: _productDto?.id ?? 0, qty: 1)
+                        shoppingCartService.addItem(cartItemToAddDto: cartItemToAddDto)
+                        
                     })
                     {
                         Text("Add to Cart")
-                        
+//                            .contentShape(Rectangle())
                     }
                     .buttonStyle(CommonButtonStyle())
                     NavigationLink(destination: ShoppingCartView(), isActive: $isLinkActive) {
@@ -84,6 +96,15 @@ struct ProductDetailView: View {
                 }
                 .padding(.bottom, 15)
                 .navigationTitle(_productDto?.name ?? "Name")
+            }
+            if (isLoading)
+            {
+//                ZStack {
+//                    Color(UIColor.secondarySystemBackground).opacity(0.7).ignoresSafeArea()
+//                    ProgressView()
+//                }
+                
+                LoadingView()
             }
         }
         .onAppear()

@@ -20,108 +20,109 @@ struct ProductListView: View {
                 {
                     SideMenuView(isShowing:$isShowing)
                 }
-                List(productService.productDtos) { productDto in
-                    ZStack {
-                        Color.white.opacity(0.3)
-                            .frame(maxWidth: .infinity, maxHeight:. infinity)
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                            .shadow(color: Color(colorDark()).opacity(0.3), radius: 4, x: 0, y: 0)
-                        
-                        NavigationLink(destination: ProductDetailView(productDto: productDto)) {
+                ZStack {
+                    List(productService.productDtos) { productDto in
+                        ZStack {
+                            Color.white.opacity(0.3)
+                                .frame(maxWidth: .infinity, maxHeight:. infinity)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .shadow(color: Color(colorDark()).opacity(0.3), radius: 4, x: 0, y: 0)
+                            
+                            NavigationLink(destination: ProductDetailView(productDto: productDto)) {
+                                
+                            }
+                            HStack {
+                                CachedAsyncImage(
+                                    url: URL(string: productDto.imageURL),
+                                    content: {image in image.resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                        .frame(width: 100, height: 80)},
+                                    placeholder: { ProgressView() }
+                                )
+                                VStack(alignment: .leading) {
+                                    Text(productDto.name)
+                                    //                            Text(NSDecimalNumber(decimal: productDto.price).stringValue)
+                                    Text(decimal2Currency(NSDecimalNumber(decimal: productDto.price)))
+                                }
+                                .foregroundColor(Color(colorDark()))
+                                .shadow(color: Color(colorDark()).opacity(0.3), radius: 4, x: 0, y: 0)
+                                Spacer()
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.leading, 8)
+                            .listRowInsets(.init(top: 0, leading: 4, bottom: 0, trailing: 4))
+                            .disabled(isShowing)
+                            .padding(5)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color(UIColor(red: 0, green: 0, blue: 0, alpha: 0.1 )), lineWidth: 1)
+                            )
                             
                         }
-                        HStack {
-                            CachedAsyncImage(
-                                url: URL(string: productDto.imageURL),
-                                content: {image in image.resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                    .frame(width: 100, height: 80)},
-                                placeholder: { ProgressView() }
-                            )
-                            VStack(alignment: .leading) {
-                                Text(productDto.name)
-                                //                            Text(NSDecimalNumber(decimal: productDto.price).stringValue)
-                                Text(decimal2Currency(NSDecimalNumber(decimal: productDto.price)))
-                            }
-                            .foregroundColor(Color(colorDark()))
-                            .shadow(color: Color(colorDark()).opacity(0.3), radius: 4, x: 0, y: 0)
-                            Spacer()
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding(.leading, 8)
-                        .listRowInsets(.init(top: 0, leading: 4, bottom: 0, trailing: 4))
-                        .disabled(isShowing)
-                        .padding(5)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color(UIColor(red: 0, green: 0, blue: 0, alpha: 0.1 )), lineWidth: 1)
-                        )
-                        
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
+                        //                    .seperator
                     }
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.clear)
-                    //                    .seperator
+                    .padding([.top, .bottom], -24)
+                    .padding(.leading, -8)
+                    .listStyle(SidebarListStyle())
+//                    .cornerRadius(isShowing ? 20 : 0)
+//                    .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
+//                    .scaleEffect(isShowing ? 0.8 : 1)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading)
+                        {
+                            Button(action: {
+                                withAnimation(.spring()) {
+                                    isShowing.toggle()
+                                }
+                                
+                            },
+                                   //                           "list.bullet"
+                                   label: {Image(systemName: "text.justify")
+                                    .font(.system(size: 14))
+                                .foregroundColor(.white)})
+                            
+                        }
+                    }
+                    .onLoad {
+                        print("list view onLoad")
+                        if (categoryId == 0) // get all
+                        {
+                            self.productService.getItems()
+                        }
+                        else
+                        {
+                            self.productService.getItemByCategory(categoryId: categoryId)
+                        }
+                        self.productService.getProductCategories()
+                    }
+                    .onAppear{
+                        print("onAppear")
+                        isShowing = false
+                    }
+                    .navigationTitle(getCategoryNameById(id: categoryId, productCategoryDtos: self.productService.productCategoryDtos))
+                    .navigationBarTitleDisplayMode(isShowing ? .automatic : .inline)
+                    if (productService.productDtos.count == 0)
+                    {
+//                        ProgressView()
+                        LoadingView()
+                    }
+                    if (isShowing)
+                    {
+                        Rectangle()
+                            .fill(Color(UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .onTapGesture(perform: {
+                                withAnimation(.spring()) {
+                                    isShowing = false
+                                }
+                            })
+                    }
                 }
-                .padding([.top, .bottom], -24)
-                .padding(.leading, -8)
-                //                .if(isShowing) { $0.listStyle(InsetListStyle()) }
-                //                .if(!isShowing) { $0.listStyle(PlainListStyle()) }
-                .listStyle(SidebarListStyle())
                 .cornerRadius(isShowing ? 20 : 0)
                 .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
                 .scaleEffect(isShowing ? 0.8 : 1)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading)
-                    {
-                        Button(action: {
-                            withAnimation(.spring()) {
-                                isShowing.toggle()
-                            }
-                            
-                        },
-                               //                           "list.bullet"
-                               label: {Image(systemName: "text.justify")
-                                .font(.system(size: 14))
-                            .foregroundColor(.white)})
-                        
-                    }
-                }
-                .onLoad {
-                    print("list view onLoad")
-                    if (categoryId == 0) // get all
-                    {
-                        self.productService.getItems()
-                    }
-                    else
-                    {
-                        self.productService.getItemByCategory(categoryId: categoryId)
-                    }
-                    self.productService.getProductCategories()
-                }
-                .onAppear{
-                    print("onAppear")
-                    isShowing = false
-                }
-                .navigationTitle(getCategoryNameById(id: categoryId, productCategoryDtos: self.productService.productCategoryDtos))
-                .navigationBarTitleDisplayMode(isShowing ? .automatic : .inline)
-                if (productService.productDtos.count < 1)
-                {
-                    ProgressView()
-                }
-                if (isShowing)
-                {
-                    Rectangle()
-                        .fill(Color(UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)))
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .cornerRadius(isShowing ? 20 : 0)
-                        .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
-                        .scaleEffect(isShowing ? 0.8 : 1)
-                        .onTapGesture(perform: {
-                            withAnimation(.spring()) {
-                                isShowing = false
-                            }
-                        })
-                }
             }
 //            .ignoresSafeArea()
         }
