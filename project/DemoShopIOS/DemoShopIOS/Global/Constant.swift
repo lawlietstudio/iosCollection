@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Constants {
      static let apiDomain: String = "https://demoshopapi.lawlietstudio.com/"
