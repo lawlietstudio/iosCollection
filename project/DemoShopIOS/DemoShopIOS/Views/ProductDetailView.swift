@@ -23,7 +23,7 @@ struct ProductDetailView: View, ShoppingCartServiceDelegate {
     func performShoppingCartServiceCallBack() {
         DispatchQueue.main.async {
             isLoading = false
-            NavigationUtil.goToView()
+            NavigationUtil.goToShoppingCartView()
         }
     }
     

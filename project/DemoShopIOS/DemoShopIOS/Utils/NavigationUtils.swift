@@ -14,9 +14,14 @@ struct NavigationUtil {
             .popToRootViewController(animated: false)
     }
     
-    static func goToView() {
+    static func goToShoppingCartView() {
         findNavigationController(viewController: UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController)?
             .setViewControllers([UIHostingController(rootView: ShoppingCartView())], animated: true)
+    }
+    
+    static func goToTransactoinView() {
+        findNavigationController(viewController: UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController)?
+            .setViewControllers([UIHostingController(rootView: TransactionView())], animated: true)
     }
 
     

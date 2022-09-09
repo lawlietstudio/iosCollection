@@ -37,6 +37,10 @@ struct SideMenuView: View {
                 NavigationLink(destination: ShoppingCartView()){
                     SideMenuOptionView(productCategoryDto: nil, imageName: "cart", title: "Shopping Cart")
                 }.frame(height: 48)
+                
+                NavigationLink(destination: TransactionView()){
+                    SideMenuOptionView(productCategoryDto: nil, imageName: "creditcard", title: "Transaction")
+                }.frame(height: 48)
 
                 Spacer()
             }

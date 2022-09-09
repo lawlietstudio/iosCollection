@@ -7,12 +7,13 @@
 import SwiftUI
 import CachedAsyncImage
 
-struct ShoppingCartView: View, ShoppingCartServiceDelegate {
+struct ShoppingCartView: View, ShoppingCartServiceDelegate, TransactionServiceDelegate {
     @State private var isShowing = false;
     @State private var isLoading = false;
     @State private var totalQty = 0
     @State private var totalPrice:Decimal = 0.0
     @ObservedObject var shoppingCartService = ShoppingCartService.shared
+    @ObservedObject var transactionService = TransactionService.shared
     
     
     func performShoppingCartServiceCallBack() {
@@ -25,6 +26,13 @@ struct ShoppingCartView: View, ShoppingCartServiceDelegate {
                 totalQty += shoppingCartService.cartItemDtos[index].qty
                 totalPrice += shoppingCartService.cartItemDtos[index].price * Decimal(shoppingCartService.cartItemDtos[index].qty)
             }
+        }
+    }
+    
+    func performTransactionServiceCallBack() {
+        DispatchQueue.main.async {
+            isLoading = false
+            NavigationUtil.goToTransactoinView()
         }
     }
     
@@ -142,7 +150,11 @@ struct ShoppingCartView: View, ShoppingCartServiceDelegate {
                                         .foregroundColor(Color(colorDark()))
                                         .shadow(color: Color(colorDark()).opacity(0.3), radius: 4, x: 0, y: 0)
                                         Spacer()
-                                        Button(action: {   })
+                                        Button(action: {
+                                            isLoading = true
+                                            transactionService.transactionServiceDelegate = self
+                                            transactionService.checkout(userId: Constants.userId)
+                                        })
                                         {
                                             Text("Checkout")
                                         }
