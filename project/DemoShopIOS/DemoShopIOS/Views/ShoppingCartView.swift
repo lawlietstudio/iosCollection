@@ -10,6 +10,8 @@ import CachedAsyncImage
 struct ShoppingCartView: View, ShoppingCartServiceDelegate, TransactionServiceDelegate {
     @State private var isShowing = false;
     @State private var isLoading = false;
+    @State private var isPresentSuccess = false;
+    @State private var transId = ""
     @State private var totalQty = 0
     @State private var totalPrice:Decimal = 0.0
     @ObservedObject var shoppingCartService = ShoppingCartService.shared
@@ -29,10 +31,11 @@ struct ShoppingCartView: View, ShoppingCartServiceDelegate, TransactionServiceDe
         }
     }
     
-    func performTransactionServiceCallBack() {
+    func performTransactionServiceCheckoutCallBack(transactoinId: String) {
         DispatchQueue.main.async {
             isLoading = false
-            NavigationUtil.goToTransactoinView()
+            isPresentSuccess = true
+            transId = transactoinId
         }
     }
     
@@ -228,6 +231,18 @@ struct ShoppingCartView: View, ShoppingCartServiceDelegate, TransactionServiceDe
             }
         }
         .navigationBarHidden(true)
+        .alert(isPresented: $isPresentSuccess) {
+            Alert(
+                title: Text("Success"),
+                message: Text("Transaction is successfully made with Id: \(transId)"),
+                dismissButton: .default(
+                    Text("Confirm"),
+                    action: {
+                        NavigationUtil.goToTransactoinView()
+                    }
+                )
+            )
+        }
     }
 }
 

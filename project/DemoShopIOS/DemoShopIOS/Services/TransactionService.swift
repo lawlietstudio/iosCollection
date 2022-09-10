@@ -27,7 +27,7 @@ class TransactionService: ObservableObject
                     let decoder = JSONDecoder()
                     if let safeDate = data {
                         do {
-                            var results = try decoder.decode([TransactionDto].self, from: safeDate)
+                            let results = try decoder.decode([TransactionDto].self, from: safeDate)
                             DispatchQueue.main.async {
                                 self.transactionDtos = results
 
@@ -59,15 +59,35 @@ class TransactionService: ObservableObject
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: request) { (data, response, error) in
                 if error == nil {
-                    do {
-                        print("success")
-                        print(response as Any)
-                        if (self.transactionServiceDelegate != nil)
+                    let decoder = JSONDecoder()
+                    if let safeDate = data {
+                        do {
+                            let results = try decoder.decode(String.self, from: safeDate)
+                            DispatchQueue.main.async {
+                                if (self.transactionServiceDelegate != nil)
+                                {
+                                    self.transactionServiceDelegate?.performTransactionServiceCheckoutCallBack(transactoinId: results)
+                                    self.transactionServiceDelegate = nil
+                                }
+                            }
+                        }
+                        catch
                         {
-                            self.transactionServiceDelegate?.performTransactionServiceCallBack()
-                            self.transactionServiceDelegate = nil
+                            print(error)
                         }
                     }
+                    //
+//                    do {
+//                        print("success")
+//                        print(response as Any)
+//                        print(data as Any)
+//                        if (self.transactionServiceDelegate != nil)
+//                        {
+////                            self.transactionServiceDelegate?.performTransactionServiceCheckoutCallBack(transactoinId: String(data))
+//                            self.transactionServiceDelegate?.performTransactionServiceCallBack()
+//                            self.transactionServiceDelegate = nil
+//                        }
+//                    }
                 }
             }
             task.resume()
@@ -78,4 +98,19 @@ class TransactionService: ObservableObject
 protocol TransactionServiceDelegate
 {
     func performTransactionServiceCallBack()
+    func performTransactionServiceCheckoutCallBack(transactoinId:String)
+}
+
+// make the protocal function become optional
+// https://stackoverflow.com/questions/24032754/how-to-define-optional-methods-in-swift-protocol
+extension TransactionServiceDelegate
+{
+    func performTransactionServiceCallBack()
+    {
+        
+    }
+    func performTransactionServiceCheckoutCallBack(transactoinId:String)
+    {
+        
+    }
 }
