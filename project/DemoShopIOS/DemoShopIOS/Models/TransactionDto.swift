@@ -10,8 +10,9 @@ import Foundation
 struct TransactionDto: Decodable, Identifiable
 {
     var id: Int
+    var transactionId: UUID
     var totalQty: Int
     var totalPrice: Decimal
-    
+    var dateTime: String
     var transactionDetailDtos: [TransactionDetailDto]
 }

@@ -40,15 +40,29 @@ struct TransactionView: View, TransactionServiceDelegate {
                                         HStack {
                                             VStack(alignment:.leading) {
                                                 Text("Transaction ID").foregroundColor(Color(colorPrimary())).font(.system(size:14))
-                                                Text("1231-2131-1231-2133")
+                                                Text("\(transactionDto.transactionId)")
                                             }
                                             
-                                            Spacer()
-                                            VStack(alignment:.trailing) {
+//                                            Spacer()
+//                                            VStack(alignment:.trailing) {
+//                                                Text("Transaction Time").foregroundColor(Color(colorPrimary())).font(.system(size:14))
+//                                                Text("\(transactionDto.dateTime)")
+//                                            }
+                                        }
+                                        Text("")
+                                        HStack {
+//                                            VStack(alignment:.leading) {
+//                                                Text("Transaction ID").foregroundColor(Color(colorPrimary())).font(.system(size:14))
+//                                                Text("\(transactionDto.transactionId)")
+//                                            }
+//
+//                                            Spacer()
+                                            VStack(alignment:.leading) {
                                                 Text("Transaction Time").foregroundColor(Color(colorPrimary())).font(.system(size:14))
-                                                Text("2022-09-10 08:00")
+                                                Text("\(jsonDate2Date(jsonDateString: transactionDto.dateTime))")
                                             }
                                         }
+                                        Text("")
                                         HStack {
                                             VStack(alignment:.leading) {
                                                 Text("Total Qty").foregroundColor(Color(colorPrimary())).font(.system(size:14))
@@ -63,7 +77,17 @@ struct TransactionView: View, TransactionServiceDelegate {
                                         }
 //                                        Text("")
                                         Divider()
-                                        HStack {
+//                                        Table(transactionDto.transactionDetailDtos) {
+//                                                TableColumn("Name", value: \.productName)
+//                                                TableColumn("Qty") { transactionDetailDto in
+//                                                    Text(String(transactionDetailDto.Qty))
+//                                                            }
+//                                                TableColumn("Price") { transactionDetailDto in
+//                                                Text(decimal2Currency(NSDecimalNumber(decimal: transactionDetailDto.productPrice)))
+//                                                        }
+//
+//                                            }
+                                        HStack(alignment: .top) {
                                             VStack(alignment:.leading) {
                                                 Text("Name").foregroundColor(Color(colorPrimary())).font(.system(size:14))
                                                 ForEach($transactionDto.transactionDetailDtos) { $transactionDetailDto in
@@ -84,24 +108,9 @@ struct TransactionView: View, TransactionServiceDelegate {
                                                 ForEach($transactionDto.transactionDetailDtos) { $transactionDetailDto in
                                                     Text("\(decimal2Currency(NSDecimalNumber(decimal: transactionDetailDto.productPrice)))")
                                                 }
-//                                                Text(decimal2Currency(NSDecimalNumber(decimal: transactionDto.totalPrice)))
                                             }
                                         }
-//                                        Text("Total Price: " + decimal2Currency(NSDecimalNumber(decimal: transactionDto.totalPrice)))
-//                                        Text("Total Qty: \(transactionDto.totalQty)")
-//                                        ForEach($transactionDto.transactionDetailDtos) { $transactionDetailDto in
-//                                            HStack{
-//                                                Text("\(transactionDetailDto.productName)")
-//                                                Spacer()
-//                                                Text("x \(transactionDetailDto.qty)")
-//                                            }
-//                                        }
-//                                        List($transactionDto.transactionDetailDtos) { $transactionDetailDto in
-//                                            Text("\(transactionDetailDto.productName) x \(transactionDetailDto.qty)")
-//                                                .listRowSeparator(.hidden)
-//                                                .listRowBackground(Color.clear)
-//                                        }
-//                                        .listStyle(SidebarListStyle())
+//                                       
                                     }
                                     .foregroundColor(Color(colorDark()))
                                     .shadow(color: Color(colorDark()).opacity(0.3), radius: 4, x: 0, y: 0)
