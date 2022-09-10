@@ -37,14 +37,71 @@ struct TransactionView: View, TransactionServiceDelegate {
 //                                HStack {
                                     VStack(alignment: .leading) {
         //                                Text("Date: \(transactionDto.dateTime)" )
-                                        Text("Total Price: " + decimal2Currency(NSDecimalNumber(decimal: transactionDto.totalPrice)))
-                                        Text("Total Qty: \(transactionDto.totalQty)")
-                                        List($transactionDto.transactionDetailDtos) { $transactionDetailDto in
-                                            Text("\(transactionDetailDto.productName) x \(transactionDetailDto.qty)")
-                                                .listRowSeparator(.hidden)
-                                                .listRowBackground(Color.clear)
+                                        HStack {
+                                            VStack(alignment:.leading) {
+                                                Text("Transaction ID").foregroundColor(Color(colorPrimary())).font(.system(size:14))
+                                                Text("1231-2131-1231-2133")
+                                            }
+                                            
+                                            Spacer()
+                                            VStack(alignment:.trailing) {
+                                                Text("Transaction Time").foregroundColor(Color(colorPrimary())).font(.system(size:14))
+                                                Text("2022-09-10 08:00")
+                                            }
                                         }
-                                        .listStyle(SidebarListStyle())
+                                        HStack {
+                                            VStack(alignment:.leading) {
+                                                Text("Total Qty").foregroundColor(Color(colorPrimary())).font(.system(size:14))
+                                                Text("\(transactionDto.totalQty)")
+                                            }
+                                            
+                                            Spacer()
+                                            VStack(alignment:.trailing) {
+                                                Text("Total Price").foregroundColor(Color(colorPrimary())).font(.system(size:14))
+                                                Text(decimal2Currency(NSDecimalNumber(decimal: transactionDto.totalPrice)))
+                                            }
+                                        }
+//                                        Text("")
+                                        Divider()
+                                        HStack {
+                                            VStack(alignment:.leading) {
+                                                Text("Name").foregroundColor(Color(colorPrimary())).font(.system(size:14))
+                                                ForEach($transactionDto.transactionDetailDtos) { $transactionDetailDto in
+                                                    Text("\(transactionDetailDto.productName)")
+                                                }
+//                                                Text("Total")
+                                            }
+                                            Spacer()
+                                            VStack {
+                                                Text("Qty").foregroundColor(Color(colorPrimary())).font(.system(size:14))
+                                                ForEach($transactionDto.transactionDetailDtos) { $transactionDetailDto in
+                                                    Text("\(transactionDetailDto.qty)")
+                                                }
+//                                                Text("\(transactionDto.totalQty)")
+                                            }
+                                            VStack(alignment:.trailing) {
+                                                Text("Price").foregroundColor(Color(colorPrimary())).font(.system(size:14))
+                                                ForEach($transactionDto.transactionDetailDtos) { $transactionDetailDto in
+                                                    Text("\(decimal2Currency(NSDecimalNumber(decimal: transactionDetailDto.productPrice)))")
+                                                }
+//                                                Text(decimal2Currency(NSDecimalNumber(decimal: transactionDto.totalPrice)))
+                                            }
+                                        }
+//                                        Text("Total Price: " + decimal2Currency(NSDecimalNumber(decimal: transactionDto.totalPrice)))
+//                                        Text("Total Qty: \(transactionDto.totalQty)")
+//                                        ForEach($transactionDto.transactionDetailDtos) { $transactionDetailDto in
+//                                            HStack{
+//                                                Text("\(transactionDetailDto.productName)")
+//                                                Spacer()
+//                                                Text("x \(transactionDetailDto.qty)")
+//                                            }
+//                                        }
+//                                        List($transactionDto.transactionDetailDtos) { $transactionDetailDto in
+//                                            Text("\(transactionDetailDto.productName) x \(transactionDetailDto.qty)")
+//                                                .listRowSeparator(.hidden)
+//                                                .listRowBackground(Color.clear)
+//                                        }
+//                                        .listStyle(SidebarListStyle())
                                     }
                                     .foregroundColor(Color(colorDark()))
                                     .shadow(color: Color(colorDark()).opacity(0.3), radius: 4, x: 0, y: 0)
@@ -55,9 +112,9 @@ struct TransactionView: View, TransactionServiceDelegate {
 //                            }
 //                            .background(.red)
 //                            .frame(maxWidth: .infinity, maxHeight:. infinity)
-                                    .frame(height: 200)
+//                                    .frame(height: 200)
                             .padding(8)
-                            .padding([.top, .bottom], 16)
+                            .padding([.top, .bottom], 8)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(Color(UIColor(red: 0, green: 0, blue: 0, alpha: 0.1 )), lineWidth: 1)
