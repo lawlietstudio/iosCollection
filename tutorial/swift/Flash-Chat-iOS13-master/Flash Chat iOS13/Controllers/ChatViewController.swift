@@ -17,6 +17,8 @@ class ChatViewController: UIViewController {
     
     let db = Firestore.firestore()
     
+    var isFirstScroll = false
+    
     var messages: [Message] = [
 //        Message(sender: "1@2.com", body: "Hey!"),
 //        Message(sender: "a@b.com", body: "Hello!"),
@@ -38,7 +40,8 @@ class ChatViewController: UIViewController {
     
     func loadMessages()
     {
-        // getDocuments
+        // getDocuments for read once
+        // addSnapshotListener for subscribe and listen multiple times
         db.collection(K.FStore.collectionName).order(by: K.FStore.dateField).addSnapshotListener { querySnapshot, error in
             
             self.messages = []
@@ -64,6 +67,9 @@ class ChatViewController: UIViewController {
                     
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                        self.tableView.scrollToRow(at: indexPath, at: .top, animated: self.isFirstScroll)
+                        self.isFirstScroll = true
                     }
                 }
             }
@@ -85,6 +91,9 @@ class ChatViewController: UIViewController {
                 } else
                 {
                     print("Successfully saved data.")
+                    DispatchQueue.main.async {
+                        self.messageTextfield.text = ""
+                    }
                 }
             }
         }
