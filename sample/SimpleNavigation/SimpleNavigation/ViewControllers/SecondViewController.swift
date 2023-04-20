@@ -8,13 +8,20 @@
 import UIKit
 
 class SecondViewController: UIViewController {
-
+    var count = 0
+    @IBOutlet weak var lblCount: UILabel!    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        count += 1;
+        lblCount.text = "\(count)"
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        count += 1;
+        lblCount.text = "\(count)"
+    }
 
     /*
     // MARK: - Navigation
