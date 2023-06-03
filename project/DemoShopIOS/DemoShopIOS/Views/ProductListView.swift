@@ -63,12 +63,12 @@ struct ProductListView: View {
                         .listRowBackground(Color.clear)
                         //                    .seperator
                     }
-                    .padding([.top, .bottom], -24)
+                    .padding(.vertical, -24)
                     .padding(.horizontal, -16)
                     .listStyle(SidebarListStyle())
-//                    .cornerRadius(isShowing ? 20 : 0)
-//                    .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
-//                    .scaleEffect(isShowing ? 0.8 : 1)
+                    //                    .cornerRadius(isShowing ? 20 : 0)
+                    //                    .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
+                    //                    .scaleEffect(isShowing ? 0.8 : 1)
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading)
                         {
@@ -76,7 +76,6 @@ struct ProductListView: View {
                                 withAnimation(.spring()) {
                                     isShowing.toggle()
                                 }
-                                
                             },
                                    //                           "list.bullet"
                                    label: {Image(systemName: "text.justify")
@@ -105,7 +104,7 @@ struct ProductListView: View {
                     .navigationBarTitleDisplayMode(isShowing ? .automatic : .inline)
                     if (productService.productDtos.count == 0)
                     {
-//                        ProgressView()
+                        //                        ProgressView()
                         LoadingView()
                     }
                     if (isShowing)
@@ -124,7 +123,7 @@ struct ProductListView: View {
                 .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
                 .scaleEffect(isShowing ? 0.8 : 1)
             }
-//            .ignoresSafeArea()
+            //            .ignoresSafeArea()
         }
         //        .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarHidden(true)
@@ -143,7 +142,7 @@ struct ProductListView: View {
             // Large Title appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
             
-//            UITableView.appearance().backgroundColor = .white
+            //            UITableView.appearance().backgroundColor = .white
         }
         .statusBarStyle(.lightContent) //set status bar style here
     }
