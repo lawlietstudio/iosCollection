@@ -1,5 +1,7 @@
 import Foundation
 
+// You should be able to substitute a base type for a subtype
+
 class Rectangle : CustomStringConvertible
 {
     var _width = 0

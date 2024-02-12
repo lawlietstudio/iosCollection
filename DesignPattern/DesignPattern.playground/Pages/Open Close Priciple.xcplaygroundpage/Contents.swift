@@ -1,6 +1,6 @@
-//: [Previous](@previous)
-
 import Foundation
+
+// Classes should be open for extension but closed for modification
 
 enum Color
 {
