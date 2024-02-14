@@ -30,7 +30,7 @@ struct ProductListView: View {
                             
                             NavigationLink(destination: ProductDetailView(productDto: productDto)) {
                                 
-                            }
+                            }.frame(width: 0, height: 0)
                             HStack {
                                 CachedAsyncImage(
                                     url: URL(string: productDto.imageURL),
@@ -50,7 +50,7 @@ struct ProductListView: View {
                             }
                             .frame(maxWidth: .infinity)
                             .padding(.leading, 8)
-                            .listRowInsets(.init(top: 0, leading: 4, bottom: 0, trailing: 4))
+                            .listRowInsets(.init(top: 0, leading: -4, bottom: 0, trailing: -4))
                             .disabled(isShowing)
                             .padding(5)
                             .overlay(
@@ -63,12 +63,12 @@ struct ProductListView: View {
                         .listRowBackground(Color.clear)
                         //                    .seperator
                     }
-                    .padding([.top, .bottom], -24)
-                    .padding(.leading, -8)
+                    .padding(.vertical, -24)
+                    .padding(.horizontal, -16)
                     .listStyle(SidebarListStyle())
-//                    .cornerRadius(isShowing ? 20 : 0)
-//                    .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
-//                    .scaleEffect(isShowing ? 0.8 : 1)
+                    //                    .cornerRadius(isShowing ? 20 : 0)
+                    //                    .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
+                    //                    .scaleEffect(isShowing ? 0.8 : 1)
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading)
                         {
@@ -76,7 +76,6 @@ struct ProductListView: View {
                                 withAnimation(.spring()) {
                                     isShowing.toggle()
                                 }
-                                
                             },
                                    //                           "list.bullet"
                                    label: {Image(systemName: "text.justify")
@@ -105,7 +104,7 @@ struct ProductListView: View {
                     .navigationBarTitleDisplayMode(isShowing ? .automatic : .inline)
                     if (productService.productDtos.count == 0)
                     {
-//                        ProgressView()
+                        //                        ProgressView()
                         LoadingView()
                     }
                     if (isShowing)
@@ -124,7 +123,7 @@ struct ProductListView: View {
                 .offset(x: isShowing ? 200: 0, y: isShowing ? 24 : 0)
                 .scaleEffect(isShowing ? 0.8 : 1)
             }
-//            .ignoresSafeArea()
+            //            .ignoresSafeArea()
         }
         //        .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarHidden(true)
@@ -133,14 +132,17 @@ struct ProductListView: View {
             appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
             appearance.backgroundColor = colorPrimary()
             appearance.titleTextAttributes = [.foregroundColor: UIColor(Color.white)]
-            
+            // set the navigation bar back button color to white, it works <= ios 15
+            // >= ios 16, the color setting is in Assets
+            /*       https://stackoverflow.com/questions/73709390/uinavigation-bar-appearance-tint-does-not-work-in-ios-16
+             */
             UINavigationBar.appearance().tintColor = .white
             // Inline appearance (standard height appearance)
             UINavigationBar.appearance().standardAppearance = appearance
             // Large Title appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
             
-//            UITableView.appearance().backgroundColor = .white
+            //            UITableView.appearance().backgroundColor = .white
         }
         .statusBarStyle(.lightContent) //set status bar style here
     }

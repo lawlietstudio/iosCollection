@@ -130,7 +130,7 @@ struct ShoppingCartView: View, ShoppingCartServiceDelegate, TransactionServiceDe
                             .listRowBackground(Color.clear)
                         }
                         .padding([.top, .bottom], -24)
-                        .padding(.leading, -8)
+                        .padding(.horizontal, -16)
                         .disabled(isShowing)
                         .animation(Animation.spring())
                         .listStyle(SidebarListStyle())
