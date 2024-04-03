@@ -14,6 +14,8 @@
 		4DE07DB62BBCF173001719A7 /* ChapterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE07DB22BBCF173001719A7 /* ChapterView.swift */; };
 		4DE07DB72BBCF173001719A7 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE07DB42BBCF173001719A7 /* Chapter.swift */; };
 		4DE07DB92BBCF183001719A7 /* Scriptures in Resources */ = {isa = PBXBuildFile; fileRef = 4DE07DB82BBCF183001719A7 /* Scriptures */; };
+		4DE07DBC2BBCF671001719A7 /* SpeechUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE07DBB2BBCF671001719A7 /* SpeechUtil.swift */; };
+		4DE07DBF2BBCF750001719A7 /* SpeakButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE07DBE2BBCF750001719A7 /* SpeakButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		4DE07DB22BBCF173001719A7 /* ChapterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChapterView.swift; sourceTree = "<group>"; };
 		4DE07DB42BBCF173001719A7 /* Chapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		4DE07DB82BBCF183001719A7 /* Scriptures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scriptures; sourceTree = "<group>"; };
+		4DE07DBB2BBCF671001719A7 /* SpeechUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechUtil.swift; sourceTree = "<group>"; };
+		4DE07DBE2BBCF750001719A7 /* SpeakButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 		4DE07DA12BBCF12B001719A7 /* BilingualScripture */ = {
 			isa = PBXGroup;
 			children = (
+				4DE07DBD2BBCF72F001719A7 /* Components */,
+				4DE07DBA2BBCF65F001719A7 /* Utils */,
 				4DE07DA22BBCF12B001719A7 /* BilingualScriptureApp.swift */,
 				4DE07DA62BBCF12D001719A7 /* Assets.xcassets */,
 				4DE07DB32BBCF173001719A7 /* Models */,
@@ -78,8 +84,8 @@
 		4DE07DB02BBCF173001719A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4DE07DB12BBCF173001719A7 /* ScriptureView.swift */,
 				4DE07DB22BBCF173001719A7 /* ChapterView.swift */,
+				4DE07DB12BBCF173001719A7 /* ScriptureView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -90,6 +96,22 @@
 				4DE07DB42BBCF173001719A7 /* Chapter.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4DE07DBA2BBCF65F001719A7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4DE07DBB2BBCF671001719A7 /* SpeechUtil.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4DE07DBD2BBCF72F001719A7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4DE07DBE2BBCF750001719A7 /* SpeakButton.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,10 +185,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DE07DBF2BBCF750001719A7 /* SpeakButton.swift in Sources */,
 				4DE07DB52BBCF173001719A7 /* ScriptureView.swift in Sources */,
 				4DE07DA32BBCF12B001719A7 /* BilingualScriptureApp.swift in Sources */,
 				4DE07DB62BBCF173001719A7 /* ChapterView.swift in Sources */,
 				4DE07DB72BBCF173001719A7 /* Chapter.swift in Sources */,
+				4DE07DBC2BBCF671001719A7 /* SpeechUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

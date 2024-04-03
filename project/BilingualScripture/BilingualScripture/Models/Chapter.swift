@@ -1,5 +1,13 @@
 import Foundation
 
+// Usage within Book or Scripture structure
+struct Book: Decodable {
+    let book: MultilingualText
+    let theme: MultilingualText
+    let introduction: MultilingualText
+    let chapters: [Chapter]
+}
+
 struct Chapter: Identifiable, Decodable {
     var id: Int { number }
     let number: Int
@@ -18,7 +26,4 @@ struct MultilingualText: Decodable {
     let zh: String
 }
 
-// Usage within Book or Scripture structure
-struct Book: Decodable {
-    let chapters: [Chapter]
-}
+
