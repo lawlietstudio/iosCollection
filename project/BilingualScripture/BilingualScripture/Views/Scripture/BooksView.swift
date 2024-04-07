@@ -90,7 +90,7 @@ struct BooksView: View {
             .overlay {
                 if let selectedBook, showDetailView
                 {
-                    ChapterView(show: $showDetailView, animation: animation, animeBook: selectedBook, fileName: selectedBook.imageName)
+                    BookView(show: $showDetailView, animation: animation, animeBook: selectedBook, fileName: selectedBook.imageName)
                     //                DetailView(show: $showDetailView, animation: animation, book: selectedBook)
                     /// For More Fluent Animation Transition
                         .transition(.asymmetric(insertion: .identity, removal: .offset(y: 5)))
@@ -155,10 +155,10 @@ struct BooksView: View {
                 .frame(width: size.width / 2, height: size.height * 0.8)
                 .background {
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .fill(.white)
+                        .fill(Color.background)
                     /// Applying Shadow
-                        .shadow(color: .black.opacity(0.08), radius: 8, x: 5, y: 5)
-                        .shadow(color: .black.opacity(0.08), radius: 8, x: -5, y: -5)
+                        .shadow(color: .primary.opacity(0.08), radius: 8, x: 5, y: 5)
+                        .shadow(color: .primary.opacity(0.08), radius: 8, x: -5, y: -5)
                 }
                 .zIndex(1)
                 /// Moving the book, if it's tapped
