@@ -1,17 +1,18 @@
-//
-//  BilingualScriptureApp.swift
-//  BilingualScripture
-//
-//  Created by mark on 2024-04-02.
-//
-
 import SwiftUI
 
 @main
 struct BilingualScriptureApp: App {
+//    @AppStorage("useDarkMode") private var useDarkMode = false
+    
+    init() {
+        UIScrollView.appearance().bounces = false
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CustomTabView()
+//                .preferredColorScheme(useDarkMode ? .dark : .light)
+//                .accentColor(useDarkMode ? .white : .black)
         }
     }
 }

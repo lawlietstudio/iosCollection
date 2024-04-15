@@ -59,8 +59,8 @@ struct Home: View {
                                         .aspectRatio(contentMode: .fill)
                                         /// Or Yor can simply Use scaling
                                         // .scaleEffect(1.25)
-//                                        .offset(x: -minX)
-//                                        .frame(width: proxy.size.width * 2.5)
+                                        .offset(x: -minX)
+                                        .frame(width: proxy.size.width * 2.5)
                                         .frame(width: cardSize.width, height: cardSize.height)
                                         .overlay(content: {
                                             OverlayView(card)
