@@ -33,16 +33,16 @@ struct BooksView: View {
                     
                     Spacer(minLength: 10)
                     
-                    Menu {
-                        Button("Toggle Carousel Mode (\(carouselMode ? "On" : "Off"))")
-                        {
-                            carouselMode.toggle()
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .rotationEffect(.init(degrees: -90))
-                            .foregroundColor(.gray)
-                    }
+//                    Menu {
+//                        Button("Toggle Carousel Mode (\(carouselMode ? "On" : "Off"))")
+//                        {
+//                            carouselMode.toggle()
+//                        }
+//                    } label: {
+//                        Image(systemName: "ellipsis")
+//                            .rotationEffect(.init(degrees: -90))
+//                            .foregroundColor(.gray)
+//                    }
                     
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

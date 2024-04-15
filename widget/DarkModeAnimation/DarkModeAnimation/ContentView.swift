@@ -1,6 +1,13 @@
+//
+//  ContentView.swift
+//  DarkModeAnimation
+//
+//  Created by mark on 2024-04-06.
+//
+
 import SwiftUI
 
-struct CustomTabView: View {
+struct ContentView: View {
     @State private var activeTab: Int = 0
     /// Sample Toggle States
     @State private var toggles: [Bool] = Array(repeating: false, count: 10)
@@ -13,24 +20,39 @@ struct CustomTabView: View {
     @State private var previousImage: UIImage?
     /// So what I'm going to do is, whenever the dark mode is toggled, I will capture the current light mode screen view and store it inthe previos image variable, and I will capture the new state and store it in the current image variable. Once the snapshots have been take, I will use them as an overlay view to smoothly transition from one state to another via the maksing effect.
     @State private var maskAnimation: Bool = false
-    
     var body: some View {
+        /// Sample View
         TabView(selection: $activeTab) {
-            BooksView()
-                .tabItem {
-                    Image(systemName: "books.vertical")
-                    Text("Scripture")
+            NavigationStack {
+                List {
+                    Section("Text Section") {
+                        Toggle("Large Display", isOn: $toggles[0])
+                        Toggle("Bold Text", isOn: $toggles[1])
+                    }
+                    
+                    Section {
+                        Toggle("Night Light", isOn: $toggles[2])
+                        Toggle("True Tone", isOn: $toggles[3])
+                    } header: {
+                        Text("Display Section")
+                    } footer: {
+                        Text("This is a Sample Footer.")
+                    }
+                    
                 }
-                .tag(0)
-
-            SettingView()
+                .navigationTitle("Dark Mode")
+            }
+            .tabItem {
+                Image(systemName: "house")
+                Text("Home")
+            }
+            
+            Text("Setting's")
                 .tabItem {
                     Image(systemName: "gearshape")
-                    Text("Setting")
+                    Text("Settings")
                 }
-                .tag(1)
         }
-        .accentColor(activateDarkMode ? .white : .black)
         .createImages(
             toggleDarkMode: toggleDarkMode,
             currentImage: $currentImage,
@@ -93,23 +115,20 @@ struct CustomTabView: View {
             .ignoresSafeArea()
         })
         .overlay(alignment: .topTrailing) {
-            if activeTab == 1 {
-                Button {
-                    toggleDarkMode.toggle()
-                } label: {
-                    Image(systemName: toggleDarkMode ? "sun.max.fill" : "moon.fill")
-                        .font(.title2)
-                        .foregroundStyle(Color.primary)
-                        .symbolEffect(.bounce, value: toggleDarkMode)
-                        .frame(width: 40, height: 40)
-                }
-                .rect { rect in
-                    buttonRect = rect
-                }
-                .padding(.top, -3.5)
-                .padding(.trailing, 10.5)
-                .disabled(currentImage != nil || previousImage != nil || maskAnimation)
+            Button {
+                toggleDarkMode.toggle()
+            } label: {
+                Image(systemName: toggleDarkMode ? "sun.max.fill" : "moon.fill")
+                    .font(.title2)
+                    .foregroundStyle(Color.primary)
+                    .symbolEffect(.bounce, value: toggleDarkMode)
+                    .frame(width: 40, height: 40)
             }
+            .rect { rect in
+                buttonRect = rect
+            }
+//            .padding(10)
+            .disabled(currentImage != nil || previousImage != nil || maskAnimation)
             // As you can see, every thing is fine, but we were able to notice a slightly dimmed previous button state icon. This is happening because the screenshot includes the previous button icon. To solve this, simply apply reverse making to the button area. As we already know the button position. it's easy to add the reverse mask to that position.
         }
         .preferredColorScheme(activateDarkMode ? .dark : .light)
@@ -117,5 +136,5 @@ struct CustomTabView: View {
 }
 
 #Preview {
-    CustomTabView()
+    ContentView()
 }

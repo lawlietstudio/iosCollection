@@ -2,7 +2,7 @@ import SwiftUI
 
 @main
 struct BilingualScriptureApp: App {
-    @AppStorage("useDarkMode") private var useDarkMode = false
+//    @AppStorage("useDarkMode") private var useDarkMode = false
     
     init() {
         UIScrollView.appearance().bounces = false
@@ -11,8 +11,8 @@ struct BilingualScriptureApp: App {
     var body: some Scene {
         WindowGroup {
             CustomTabView()
-                .preferredColorScheme(useDarkMode ? .dark : .light)
-                .accentColor(useDarkMode ? .white : .black)
+//                .preferredColorScheme(useDarkMode ? .dark : .light)
+//                .accentColor(useDarkMode ? .white : .black)
         }
     }
 }

@@ -45,16 +45,16 @@ struct SettingView: View {
                     }
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        useDarkMode.toggle()
-                    }) {
-                        Image(systemName: useDarkMode ? "sun.max.fill" : "moon.fill")
-                            .animation(.spring, value: useDarkMode)
-                    }
-                }
-            }
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button(action: {
+//                        useDarkMode.toggle()
+//                    }) {
+//                        Image(systemName: useDarkMode ? "sun.max.fill" : "moon.fill")
+//                            .animation(.spring, value: useDarkMode)
+//                    }
+//                }
+//            }
         }
     }
     
