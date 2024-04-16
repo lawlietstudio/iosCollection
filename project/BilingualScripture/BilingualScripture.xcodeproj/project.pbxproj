@@ -13,7 +13,6 @@
 		4D8B84FC2BBF79EC003D1D7F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B84FB2BBF79EC003D1D7F /* BackButton.swift */; };
 		4D8B85202BC26586003D1D7F /* View_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B851F2BC26586003D1D7F /* View_Extensions.swift */; };
 		4D8B85222BC265A4003D1D7F /* RectKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8B85212BC265A4003D1D7F /* RectKey.swift */; };
-		4DD9ABDA2BC26C4D0070A1D0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DD9ABD92BC26C4D0070A1D0 /* Launch Screen.storyboard */; };
 		4DE07DA32BBCF12B001719A7 /* BilingualScriptureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE07DA22BBCF12B001719A7 /* BilingualScriptureApp.swift */; };
 		4DE07DA72BBCF12D001719A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DE07DA62BBCF12D001719A7 /* Assets.xcassets */; };
 		4DE07DAA2BBCF12D001719A7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DE07DA92BBCF12D001719A7 /* Preview Assets.xcassets */; };
@@ -34,7 +33,6 @@
 		4D8B84FB2BBF79EC003D1D7F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		4D8B851F2BC26586003D1D7F /* View_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View_Extensions.swift; sourceTree = "<group>"; };
 		4D8B85212BC265A4003D1D7F /* RectKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectKey.swift; sourceTree = "<group>"; };
-		4DD9ABD92BC26C4D0070A1D0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		4DE07D9F2BBCF12B001719A7 /* BilingualScripture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BilingualScripture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DE07DA22BBCF12B001719A7 /* BilingualScriptureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilingualScriptureApp.swift; sourceTree = "<group>"; };
 		4DE07DA62BBCF12D001719A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 		4DE07DA12BBCF12B001719A7 /* BilingualScripture */ = {
 			isa = PBXGroup;
 			children = (
-				4DD9ABD92BC26C4D0070A1D0 /* Launch Screen.storyboard */,
 				4DE07DA22BBCF12B001719A7 /* BilingualScriptureApp.swift */,
 				4DE07DA62BBCF12D001719A7 /* Assets.xcassets */,
 				4DE07DB82BBCF183001719A7 /* Scriptures */,
@@ -225,7 +222,6 @@
 			files = (
 				4DE07DAA2BBCF12D001719A7 /* Preview Assets.xcassets in Resources */,
 				4DE07DB92BBCF183001719A7 /* Scriptures in Resources */,
-				4DD9ABDA2BC26C4D0070A1D0 /* Launch Screen.storyboard in Resources */,
 				4DE07DA72BBCF12D001719A7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
