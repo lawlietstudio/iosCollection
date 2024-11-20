@@ -5,15 +5,32 @@ struct AddRateView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     
-    @State private var selectedCurrency = ""
+    @State private var selectedCurrency = "USD"
     @State private var rate: Double?
+    
+    private let availableCurrencies = Locale.commonISOCurrencyCodes.sorted()
     
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Currency", text: $selectedCurrency)
-                TextField("Rate", value: $rate, format: .number)
-                    .keyboardType(.decimalPad)
+                Picker("Currency", selection: $selectedCurrency) {
+                    ForEach(availableCurrencies, id: \.self) { code in
+                        HStack {
+                            Text(code)
+                            Text(Locale.current.localizedString(forCurrencyCode: code) ?? "")
+                                .foregroundColor(.secondary)
+                        }
+                        .tag(code)
+                    }
+                }
+                
+                LabeledContent {
+                    TextField("Rate", value: $rate, format: .number)
+                        .multilineTextAlignment(.trailing)
+                        .keyboardType(.decimalPad)
+                } label: {
+                    Text("Rate")
+                }
             }
             .navigationTitle("Add Rate")
             .navigationBarTitleDisplayMode(.inline)

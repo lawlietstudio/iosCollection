@@ -237,20 +237,20 @@ struct AssetRow: View {
             Text(asset.name)
             Spacer()
             VStack(alignment: .trailing) {
-                Text(CurrencyConverter.shared.formatAmount(asset.amount ?? 0, currency: asset.currency))
+                Text(CurrencyConverter.shared.formatAmount(
+                    CurrencyConverter.shared.convert(
+                        asset.amount,
+                        from: asset.currency,
+                        to: selectedCurrency,
+                        using: rates
+                    ),
+                    currency: selectedCurrency
+                ))
                 
                 if asset.currency != selectedCurrency {
-                    Text(CurrencyConverter.shared.formatAmount(
-                        CurrencyConverter.shared.convert(
-                            asset.amount,
-                            from: asset.currency,
-                            to: selectedCurrency,
-                            using: rates
-                        ),
-                        currency: selectedCurrency
-                    ))
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                    Text(CurrencyConverter.shared.formatAmount(asset.amount ?? 0, currency: asset.currency))
+                        .font(.caption)
+                        .foregroundColor(.secondary)
                 }
             }
         }
