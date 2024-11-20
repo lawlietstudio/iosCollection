@@ -24,18 +24,15 @@ struct CurrencyRatesView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        dismiss()
-                    }
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showingAddSheet = true
                     }) {
                         Image(systemName: "plus")
                     }
                 }
+            }
+            .sheet(isPresented: $showingAddSheet) {
+                AddRateView()
             }
         }
     }
