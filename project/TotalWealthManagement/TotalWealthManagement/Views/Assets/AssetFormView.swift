@@ -22,8 +22,10 @@ struct AssetFormView: View {
     init(asset: Asset? = nil) {
         self.originalAsset = asset
         self._editingAsset = State(initialValue: asset?.copy() ?? Asset())
-        self._selectedColor = State(initialValue: asset?.displayColor ?? .blue)
+        let newColor = Asset.convertToColor(colorString: Asset.randomColorString())
+        self._selectedColor = State(initialValue: asset?.displayColor ?? newColor)
         self.isNewAsset = asset == nil
+        editingAsset.color = colorToString(newColor)
     }
     
     var body: some View {

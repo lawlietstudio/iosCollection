@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		4DA2723D2CEA2DC900B5BF40 /* TotalWealthManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TotalWealthManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DC6948C2D0EE49F00462150 /* ComplexAppUIAnimations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComplexAppUIAnimations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		4DA2723F2CEA2DC900B5BF40 /* TotalWealthManagement */ = {
+		4DC6948E2D0EE49F00462150 /* ComplexAppUIAnimations */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TotalWealthManagement;
+			path = ComplexAppUIAnimations;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		4DA2723A2CEA2DC900B5BF40 /* Frameworks */ = {
+		4DC694892D0EE49F00462150 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,18 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4DA272342CEA2DC900B5BF40 = {
+		4DC694832D0EE49E00462150 = {
 			isa = PBXGroup;
 			children = (
-				4DA2723F2CEA2DC900B5BF40 /* TotalWealthManagement */,
-				4DA2723E2CEA2DC900B5BF40 /* Products */,
+				4DC6948E2D0EE49F00462150 /* ComplexAppUIAnimations */,
+				4DC6948D2D0EE49F00462150 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		4DA2723E2CEA2DC900B5BF40 /* Products */ = {
+		4DC6948D2D0EE49F00462150 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4DA2723D2CEA2DC900B5BF40 /* TotalWealthManagement.app */,
+				4DC6948C2D0EE49F00462150 /* ComplexAppUIAnimations.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,64 +48,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4DA2723C2CEA2DC900B5BF40 /* TotalWealthManagement */ = {
+		4DC6948B2D0EE49F00462150 /* ComplexAppUIAnimations */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4DA2724B2CEA2DCB00B5BF40 /* Build configuration list for PBXNativeTarget "TotalWealthManagement" */;
+			buildConfigurationList = 4DC6949A2D0EE4A100462150 /* Build configuration list for PBXNativeTarget "ComplexAppUIAnimations" */;
 			buildPhases = (
-				4DA272392CEA2DC900B5BF40 /* Sources */,
-				4DA2723A2CEA2DC900B5BF40 /* Frameworks */,
-				4DA2723B2CEA2DC900B5BF40 /* Resources */,
+				4DC694882D0EE49F00462150 /* Sources */,
+				4DC694892D0EE49F00462150 /* Frameworks */,
+				4DC6948A2D0EE49F00462150 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				4DA2723F2CEA2DC900B5BF40 /* TotalWealthManagement */,
+				4DC6948E2D0EE49F00462150 /* ComplexAppUIAnimations */,
 			);
-			name = TotalWealthManagement;
+			name = ComplexAppUIAnimations;
 			packageProductDependencies = (
 			);
-			productName = TotalWealthManagement;
-			productReference = 4DA2723D2CEA2DC900B5BF40 /* TotalWealthManagement.app */;
+			productName = ComplexAppUIAnimations;
+			productReference = 4DC6948C2D0EE49F00462150 /* ComplexAppUIAnimations.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		4DA272352CEA2DC900B5BF40 /* Project object */ = {
+		4DC694842D0EE49E00462150 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
-					4DA2723C2CEA2DC900B5BF40 = {
+					4DC6948B2D0EE49F00462150 = {
 						CreatedOnToolsVersion = 16.1;
 					};
 				};
 			};
-			buildConfigurationList = 4DA272382CEA2DC900B5BF40 /* Build configuration list for PBXProject "TotalWealthManagement" */;
+			buildConfigurationList = 4DC694872D0EE49E00462150 /* Build configuration list for PBXProject "ComplexAppUIAnimations" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 4DA272342CEA2DC900B5BF40;
+			mainGroup = 4DC694832D0EE49E00462150;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 4DA2723E2CEA2DC900B5BF40 /* Products */;
+			productRefGroup = 4DC6948D2D0EE49F00462150 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4DA2723C2CEA2DC900B5BF40 /* TotalWealthManagement */,
+				4DC6948B2D0EE49F00462150 /* ComplexAppUIAnimations */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		4DA2723B2CEA2DC900B5BF40 /* Resources */ = {
+		4DC6948A2D0EE49F00462150 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4DA272392CEA2DC900B5BF40 /* Sources */ = {
+		4DC694882D0EE49F00462150 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -125,7 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		4DA272492CEA2DCB00B5BF40 /* Debug */ = {
+		4DC694982D0EE4A100462150 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -188,7 +188,7 @@
 			};
 			name = Debug;
 		};
-		4DA2724A2CEA2DCB00B5BF40 /* Release */ = {
+		4DC694992D0EE4A100462150 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -244,28 +244,28 @@
 			};
 			name = Release;
 		};
-		4DA2724C2CEA2DCB00B5BF40 /* Debug */ = {
+		4DC6949B2D0EE4A100462150 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TotalWealthManagement/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ComplexAppUIAnimations/Preview Content\"";
 				DEVELOPMENT_TEAM = 44Y5KSFRJB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = LawlietStudio.TotalWealthManagement;
+				PRODUCT_BUNDLE_IDENTIFIER = LawlietStudio.ComplexAppUIAnimations;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -273,28 +273,28 @@
 			};
 			name = Debug;
 		};
-		4DA2724D2CEA2DCB00B5BF40 /* Release */ = {
+		4DC6949C2D0EE4A100462150 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TotalWealthManagement/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ComplexAppUIAnimations/Preview Content\"";
 				DEVELOPMENT_TEAM = 44Y5KSFRJB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = LawlietStudio.TotalWealthManagement;
+				PRODUCT_BUNDLE_IDENTIFIER = LawlietStudio.ComplexAppUIAnimations;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -305,25 +305,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4DA272382CEA2DC900B5BF40 /* Build configuration list for PBXProject "TotalWealthManagement" */ = {
+		4DC694872D0EE49E00462150 /* Build configuration list for PBXProject "ComplexAppUIAnimations" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4DA272492CEA2DCB00B5BF40 /* Debug */,
-				4DA2724A2CEA2DCB00B5BF40 /* Release */,
+				4DC694982D0EE4A100462150 /* Debug */,
+				4DC694992D0EE4A100462150 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4DA2724B2CEA2DCB00B5BF40 /* Build configuration list for PBXNativeTarget "TotalWealthManagement" */ = {
+		4DC6949A2D0EE4A100462150 /* Build configuration list for PBXNativeTarget "ComplexAppUIAnimations" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4DA2724C2CEA2DCB00B5BF40 /* Debug */,
-				4DA2724D2CEA2DCB00B5BF40 /* Release */,
+				4DC6949B2D0EE4A100462150 /* Debug */,
+				4DC6949C2D0EE4A100462150 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 4DA272352CEA2DC900B5BF40 /* Project object */;
+	rootObject = 4DC694842D0EE49E00462150 /* Project object */;
 }

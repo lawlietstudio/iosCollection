@@ -25,9 +25,20 @@ final class Asset {
     }
     
     var displayColor: Color {
-        let components = color.split(separator: ",").compactMap { Double($0) }
+        return Asset.convertToColor(colorString: color)
+    }
+    
+    static func convertToColor(colorString: String) -> Color {
+        let components = colorString.split(separator: ",").compactMap { Double($0) }
         guard components.count == 3 else { return .blue }
         return Color(red: components[0], green: components[1], blue: components[2])
+    }
+    
+    static func randomColorString() -> String {
+        let red = Double.random(in: 0...1)
+        let green = Double.random(in: 0...1)
+        let blue = Double.random(in: 0...1)
+        return "\(red),\(green),\(blue)"
     }
     
     func copy() -> Asset {

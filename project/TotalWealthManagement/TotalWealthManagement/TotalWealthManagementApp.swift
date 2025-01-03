@@ -35,7 +35,7 @@ struct TotalWealthManagementApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AssetsView()
+            SideBarLayoutView()
         }
         .modelContainer(container)
     }
