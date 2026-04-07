@@ -70,7 +70,7 @@ struct Home: View {
             DetailView(row: $selectedRow, animationID: animation)
                 /*
                 .overlay {
-                    /// Demo Showing State Changes are workng in real time
+                    // Demo Showing State Changes are workng in real time
                     Button(test ? "Clicked" : "Click Me") {
                         test.toggle()
                     }
